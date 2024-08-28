@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\ue projects\\7_thirdpersonshooter\\thirdpersonshooter\\source\\thirdpersonshooter\\thirdpersonshooter.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\ue projects\\7_thirdpersonshooter\\thirdpersonshooter\\intermediate\\build\\win64\\x64\\thirdpersonshootereditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\ue projects\\7_thirdpersonshooter\\thirdpersonshooter\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\thirdpersonshooter\\definitions.thirdpersonshooter.h",
+            "d:\\ue projects\\7_thirdpersonshooter\\thirdpersonshooter\\source\\thirdpersonshooter\\thirdpersonshooter.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
