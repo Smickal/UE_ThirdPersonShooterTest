@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\UE Projects\\7_ThirdPersonShooter\\ThirdPersonShooter\\Intermediate\\Build\\BuildRulesProjects\\ThirdPersonShooterModuleRules\\ThirdPersonShooterModuleRules.csproj": {}
+    "D:\\UE Projects\\7_ThirdPersonShooter\\UE_ThirdPersonShooterTest\\ThirdPersonShooter\\Intermediate\\Build\\BuildRulesProjects\\ThirdPersonShooterModuleRules\\ThirdPersonShooterModuleRules.csproj": {}
   },
   "projects": {
-    "D:\\UE Projects\\7_ThirdPersonShooter\\ThirdPersonShooter\\Intermediate\\Build\\BuildRulesProjects\\ThirdPersonShooterModuleRules\\ThirdPersonShooterModuleRules.csproj": {
+    "D:\\UE Projects\\7_ThirdPersonShooter\\UE_ThirdPersonShooterTest\\ThirdPersonShooter\\Intermediate\\Build\\BuildRulesProjects\\ThirdPersonShooterModuleRules\\ThirdPersonShooterModuleRules.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\UE Projects\\7_ThirdPersonShooter\\ThirdPersonShooter\\Intermediate\\Build\\BuildRulesProjects\\ThirdPersonShooterModuleRules\\ThirdPersonShooterModuleRules.csproj",
+        "projectUniqueName": "D:\\UE Projects\\7_ThirdPersonShooter\\UE_ThirdPersonShooterTest\\ThirdPersonShooter\\Intermediate\\Build\\BuildRulesProjects\\ThirdPersonShooterModuleRules\\ThirdPersonShooterModuleRules.csproj",
         "projectName": "ThirdPersonShooterModuleRules",
-        "projectPath": "D:\\UE Projects\\7_ThirdPersonShooter\\ThirdPersonShooter\\Intermediate\\Build\\BuildRulesProjects\\ThirdPersonShooterModuleRules\\ThirdPersonShooterModuleRules.csproj",
+        "projectPath": "D:\\UE Projects\\7_ThirdPersonShooter\\UE_ThirdPersonShooterTest\\ThirdPersonShooter\\Intermediate\\Build\\BuildRulesProjects\\ThirdPersonShooterModuleRules\\ThirdPersonShooterModuleRules.csproj",
         "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "D:\\UE Projects\\7_ThirdPersonShooter\\ThirdPersonShooter\\Intermediate\\Build\\BuildRulesProjects\\ThirdPersonShooterModuleRules\\obj\\",
+        "outputPath": "D:\\UE Projects\\7_ThirdPersonShooter\\UE_ThirdPersonShooterTest\\ThirdPersonShooter\\Intermediate\\Build\\BuildRulesProjects\\ThirdPersonShooterModuleRules\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",

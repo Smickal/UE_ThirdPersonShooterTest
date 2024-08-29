@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"D:\\UE Projects\\7_ThirdPersonShooter\\ThirdPersonShooter\\Source\\ThirdPersonShooter\\ThirdPersonShooter.Build.cs",
-		"D:\\UE Projects\\7_ThirdPersonShooter\\ThirdPersonShooter\\Source\\ThirdPersonShooter.Target.cs",
-		"D:\\UE Projects\\7_ThirdPersonShooter\\ThirdPersonShooter\\Source\\ThirdPersonShooterEditor.Target.cs"
+		"D:\\UE Projects\\7_ThirdPersonShooter\\UE_ThirdPersonShooterTest\\ThirdPersonShooter\\Source\\ThirdPersonShooter\\ThirdPersonShooter.Build.cs",
+		"D:\\UE Projects\\7_ThirdPersonShooter\\UE_ThirdPersonShooterTest\\ThirdPersonShooter\\Source\\ThirdPersonShooter.Target.cs",
+		"D:\\UE Projects\\7_ThirdPersonShooter\\UE_ThirdPersonShooterTest\\ThirdPersonShooter\\Source\\ThirdPersonShooterEditor.Target.cs"
 	],
-	"EngineVersion": "5.4.3"
+	"EngineVersion": "5.4.4"
 }
