@@ -14,6 +14,12 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define THIRDPERSONSHOOTER_ShooterCharacter_generated_h
 
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execGetCrosshairSpreadMulitplier); \
+	DECLARE_FUNCTION(execAutoFireReset); \
+	DECLARE_FUNCTION(execFinishCrosshairBulletFire);
+
+
 #define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_18_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAShooterCharacter(); \
@@ -39,6 +45,7 @@ public: \
 #define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_18_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
+	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_18_INCLASS_NO_PURE_DECLS \
 	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_18_ENHANCED_CONSTRUCTORS \
 private: \
