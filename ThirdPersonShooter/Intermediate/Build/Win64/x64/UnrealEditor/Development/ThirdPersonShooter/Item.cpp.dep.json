@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\ue projects\\7_thirdpersonshooter\\ue_thirdpersonshootertest\\thirdpersonshooter\\source\\thirdpersonshooter\\private\\item.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\ue projects\\7_thirdpersonshooter\\ue_thirdpersonshootertest\\thirdpersonshooter\\intermediate\\build\\win64\\x64\\thirdpersonshootereditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\ue projects\\7_thirdpersonshooter\\ue_thirdpersonshootertest\\thirdpersonshooter\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\thirdpersonshooter\\definitions.thirdpersonshooter.h",
+            "d:\\ue projects\\7_thirdpersonshooter\\ue_thirdpersonshootertest\\thirdpersonshooter\\source\\thirdpersonshooter\\public\\item.h",
+            "d:\\ue projects\\7_thirdpersonshooter\\ue_thirdpersonshootertest\\thirdpersonshooter\\intermediate\\build\\win64\\unrealeditor\\inc\\thirdpersonshooter\\uht\\item.generated.h",
+            "e:\\games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\components\\boxcomponent.h",
+            "e:\\games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
+            "e:\\games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\shapecomponent.generated.h",
+            "e:\\games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\boxcomponent.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

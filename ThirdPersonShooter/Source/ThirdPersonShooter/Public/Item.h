@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Item.generated.h"
 
+class UWidgetComponent;
 class UBoxComponent;
 
 UCLASS()
@@ -34,6 +35,10 @@ private:
 	//Line Trace Collides with box to show HUD widget
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item Properties", meta = (AllowPrivateAccess = "true"))
 	UBoxComponent* CollisionBox;
+
+	//Pop Up Widget When player looks at  the item
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
+	class UWidgetComponent* PickUpWidget;
 
 public:
 };
