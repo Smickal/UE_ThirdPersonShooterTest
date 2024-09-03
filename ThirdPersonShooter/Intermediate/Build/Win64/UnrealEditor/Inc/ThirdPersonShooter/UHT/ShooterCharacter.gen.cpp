@@ -16,6 +16,7 @@ ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
+THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_AItem_NoRegister();
 THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_AShooterCharacter();
 THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_AShooterCharacter_NoRegister();
 UPackage* Z_Construct_UPackage__Script_ThirdPersonShooter();
@@ -426,6 +427,17 @@ struct Z_Construct_UClass_AShooterCharacter_Statics
 		{ "ToolTip", "ShootingFactor Component for the crosshairspread" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PreviousTraceHitItem_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Items" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//The  AItem that was hit last frame\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "The  AItem that was hit last frame" },
+#endif
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CameraBoom;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_FollowCamera;
@@ -452,6 +464,7 @@ struct Z_Construct_UClass_AShooterCharacter_Statics
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CrosshairInAirFactor;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CrosshairAimFactor;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CrosshairShootingFactor;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_PreviousTraceHitItem;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -493,6 +506,7 @@ const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharact
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrosshairInAirFactor = { "CrosshairInAirFactor", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, CrosshairInAirFactor), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CrosshairInAirFactor_MetaData), NewProp_CrosshairInAirFactor_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrosshairAimFactor = { "CrosshairAimFactor", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, CrosshairAimFactor), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CrosshairAimFactor_MetaData), NewProp_CrosshairAimFactor_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrosshairShootingFactor = { "CrosshairShootingFactor", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, CrosshairShootingFactor), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CrosshairShootingFactor_MetaData), NewProp_CrosshairShootingFactor_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_PreviousTraceHitItem = { "PreviousTraceHitItem", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, PreviousTraceHitItem), Z_Construct_UClass_AItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PreviousTraceHitItem_MetaData), NewProp_PreviousTraceHitItem_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShooterCharacter_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CameraBoom,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_FollowCamera,
@@ -518,6 +532,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShooterC
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrosshairInAirFactor,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrosshairAimFactor,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrosshairShootingFactor,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_PreviousTraceHitItem,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AShooterCharacter_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AShooterCharacter_Statics::DependentSingletons[])() = {
@@ -560,10 +575,10 @@ AShooterCharacter::~AShooterCharacter() {}
 struct Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AShooterCharacter, AShooterCharacter::StaticClass, TEXT("AShooterCharacter"), &Z_Registration_Info_UClass_AShooterCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShooterCharacter), 3458102539U) },
+		{ Z_Construct_UClass_AShooterCharacter, AShooterCharacter::StaticClass, TEXT("AShooterCharacter"), &Z_Registration_Info_UClass_AShooterCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShooterCharacter), 252229340U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_263234931(TEXT("/Script/ThirdPersonShooter"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_635011488(TEXT("/Script/ThirdPersonShooter"),
 	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

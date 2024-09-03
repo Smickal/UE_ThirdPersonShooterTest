@@ -17,13 +17,13 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonShooter_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x5D6B5124,
-				0xAFF739F4,
+				0x80516A46,
+				0x859EFC1E,
 				METADATA_PARAMS(0, nullptr)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_ThirdPersonShooter.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_ThirdPersonShooter.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_ThirdPersonShooter(Z_Construct_UPackage__Script_ThirdPersonShooter, TEXT("/Script/ThirdPersonShooter"), Z_Registration_Info_UPackage__Script_ThirdPersonShooter, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x5D6B5124, 0xAFF739F4));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_ThirdPersonShooter(Z_Construct_UPackage__Script_ThirdPersonShooter, TEXT("/Script/ThirdPersonShooter"), Z_Registration_Info_UPackage__Script_ThirdPersonShooter, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x80516A46, 0x859EFC1E));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -7,6 +7,7 @@
 #include "Particles/ParticleSystem.h"
 #include "ShooterCharacter.generated.h"
 
+class AItem;
 class UCameraComponent;
 class USpringArmComponent;
 class USoundCue;
@@ -81,7 +82,12 @@ protected:
 
 	UFUNCTION()
 	void AutoFireReset();
-	
+
+	//Line Trace the  item  under  the crosshair
+	bool TraceUnderCrosshair(FHitResult& OutHitResult, FVector& OutHitLocation);
+
+	//Trace For Items if OverllapedItemCOunt > 0
+	void  TraceForItems();
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -215,6 +221,16 @@ private:
 
 	//Sets a Timer between gunshot
 	FTimerHandle AutoFireHandle;
+
+	//True, If we should trace every frame for item
+	bool bShouldTraceForItems;
+
+	//Number Of Overlapped AItems;
+	int8 OverllapedItemCount;
+
+	//The  AItem that was hit last frame
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Items, meta = (AllowPrivateAccess = "true"))
+	AItem* PreviousTraceHitItem;
 	
 public:
 	//Returns Camera Boom Subobject
@@ -226,4 +242,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	float GetCrosshairSpreadMulitplier() const {return CrosshairSpreadMultiplier;}
+
+	FORCEINLINE int8 GetOverlappedItemCount()  const {return  OverllapedItemCount;}
+
+	//This Func, will add/subtrac to/from overllapedItemCount and Updates bShouldTraceFromItems
+	void IncrementOverlappedItemCount(int8 Amount); 
 };
