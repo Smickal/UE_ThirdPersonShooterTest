@@ -14,13 +14,13 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define THIRDPERSONSHOOTER_ShooterCharacter_generated_h
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execGetCrosshairSpreadMulitplier); \
 	DECLARE_FUNCTION(execAutoFireReset); \
 	DECLARE_FUNCTION(execFinishCrosshairBulletFire);
 
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_19_INCLASS_NO_PURE_DECLS \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_20_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAShooterCharacter(); \
 	friend struct Z_Construct_UClass_AShooterCharacter_Statics; \
@@ -29,7 +29,7 @@ public: \
 	DECLARE_SERIALIZER(AShooterCharacter)
 
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_19_ENHANCED_CONSTRUCTORS \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_20_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AShooterCharacter(AShooterCharacter&&); \
@@ -41,13 +41,13 @@ public: \
 	NO_API virtual ~AShooterCharacter();
 
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_16_PROLOG
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_19_GENERATED_BODY \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_17_PROLOG
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_20_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_19_INCLASS_NO_PURE_DECLS \
-	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_19_ENHANCED_CONSTRUCTORS \
+	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_20_INCLASS_NO_PURE_DECLS \
+	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_20_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

@@ -17,12 +17,12 @@ struct FHitResult;
 #endif
 #define THIRDPERSONSHOOTER_Item_generated_h
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_29_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_41_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execOnSphereEndOverlap); \
 	DECLARE_FUNCTION(execOnSphereBeginOverlap);
 
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_29_INCLASS_NO_PURE_DECLS \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_41_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAItem(); \
 	friend struct Z_Construct_UClass_AItem_Statics; \
@@ -31,7 +31,7 @@ public: \
 	DECLARE_SERIALIZER(AItem)
 
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_29_ENHANCED_CONSTRUCTORS \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_41_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AItem(AItem&&); \
@@ -43,13 +43,13 @@ public: \
 	NO_API virtual ~AItem();
 
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_26_PROLOG
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_29_GENERATED_BODY \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_38_PROLOG
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_41_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_29_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_29_INCLASS_NO_PURE_DECLS \
-	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_29_ENHANCED_CONSTRUCTORS \
+	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_41_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_41_INCLASS_NO_PURE_DECLS \
+	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_41_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -70,5 +70,17 @@ template<> THIRDPERSONSHOOTER_API UClass* StaticClass<class AItem>();
 enum class EItemRarity : uint8;
 template<> struct TIsUEnumClass<EItemRarity> { enum { Value = true }; };
 template<> THIRDPERSONSHOOTER_API UEnum* StaticEnum<EItemRarity>();
+
+#define FOREACH_ENUM_EITEMSTATE(op) \
+	op(EItemState::EIS_PickUp) \
+	op(EItemState::EIS_EquipInterping) \
+	op(EItemState::EIS_PickedUp) \
+	op(EItemState::EIS_Equipped) \
+	op(EItemState::EIS_Falling) \
+	op(EItemState::EIR_MAX) 
+
+enum class EItemState : uint8;
+template<> struct TIsUEnumClass<EItemState> { enum { Value = true }; };
+template<> THIRDPERSONSHOOTER_API UEnum* StaticEnum<EItemState>();
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

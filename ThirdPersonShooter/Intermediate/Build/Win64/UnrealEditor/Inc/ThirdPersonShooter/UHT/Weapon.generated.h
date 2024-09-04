@@ -14,6 +14,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define THIRDPERSONSHOOTER_Weapon_generated_h
 
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Weapon_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execStopFalling);
+
+
 #define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Weapon_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAWeapon(); \
@@ -24,8 +28,6 @@ public: \
 
 
 #define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Weapon_h_15_ENHANCED_CONSTRUCTORS \
-	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API AWeapon(); \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AWeapon(AWeapon&&); \
@@ -41,6 +43,7 @@ public: \
 #define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Weapon_h_15_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
+	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Weapon_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Weapon_h_15_INCLASS_NO_PURE_DECLS \
 	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Weapon_h_15_ENHANCED_CONSTRUCTORS \
 private: \

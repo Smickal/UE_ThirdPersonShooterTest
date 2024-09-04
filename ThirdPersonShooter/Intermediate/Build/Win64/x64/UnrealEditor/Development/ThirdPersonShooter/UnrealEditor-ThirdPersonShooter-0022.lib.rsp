@@ -1,0 +1,23 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-ThirdPersonShooter-0022.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\ThirdPersonShooterEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
+"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\UnrealEditor\Development\ThirdPersonShooter\Item.gen.cpp.obj"
+"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\UnrealEditor\Development\ThirdPersonShooter\ShooterAnimInstance.gen.cpp.obj"
+"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\UnrealEditor\Development\ThirdPersonShooter\ShooterCharacter.gen.cpp.obj"
+"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\UnrealEditor\Development\ThirdPersonShooter\ShooterGameModeBase.gen.cpp.obj"
+"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\UnrealEditor\Development\ThirdPersonShooter\ThirdPersonShooter.init.gen.cpp.obj"
+"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\UnrealEditor\Development\ThirdPersonShooter\Weapon.gen.cpp.obj"
+"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\UnrealEditor\Development\ThirdPersonShooter\ThirdPersonShooter.cpp.obj"
+"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\UnrealEditor\Development\ThirdPersonShooter\ShooterAnimInstance.cpp.obj"
+"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\UnrealEditor\Development\ThirdPersonShooter\ShooterGameModeBase.cpp.obj"
+"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\UnrealEditor\Development\ThirdPersonShooter\Item.cpp.obj"
+"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\UnrealEditor\Development\ThirdPersonShooter\ShooterCharacter.cpp.obj"
+"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\UnrealEditor\Development\ThirdPersonShooter\Weapon.cpp.obj"
+"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\UnrealEditor\Development\ThirdPersonShooter\Default.rc2.res"
+/OUT:"D:\UE Projects\7_ThirdPersonShooter\UE_ThirdPersonShooterTest\ThirdPersonShooter\Intermediate\Build\Win64\x64\UnrealEditor\Development\ThirdPersonShooter\UnrealEditor-ThirdPersonShooter-0022.lib"

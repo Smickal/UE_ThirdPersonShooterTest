@@ -13,5 +13,24 @@ UCLASS()
 class THIRDPERSONSHOOTER_API AWeapon : public AItem
 {
 	GENERATED_BODY()
+
+public:
+	AWeapon();
+
+	virtual void Tick(float DeltaSeconds) override;
+
+	//Adds an Impulse to the character
+	void ThrowWeapon();
+protected:
+	UFUNCTION()
+
+	void StopFalling();
 	
+private:
+	FTimerHandle ThrowWeaponTimer;
+	float ThrowWeaponTime;
+	bool bIsFalling;
+
+	
+public:
 };
