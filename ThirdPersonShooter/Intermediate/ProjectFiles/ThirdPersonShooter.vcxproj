@@ -274,6 +274,9 @@
     <ClCompile Include="..\..\Source\ThirdPersonShooter\Private\ShooterGameModeBase.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\ThirdPersonShooter\Private\ShooterPlayerController.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ThirdPersonShooter\Private\Weapon.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -281,6 +284,7 @@
     <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\ShooterAnimInstance.h"/>
     <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\ShooterCharacter.h"/>
     <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\ShooterGameModeBase.h"/>
+    <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\ShooterPlayerController.h"/>
     <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\Weapon.h"/>
   </ItemGroup>
   <PropertyGroup>

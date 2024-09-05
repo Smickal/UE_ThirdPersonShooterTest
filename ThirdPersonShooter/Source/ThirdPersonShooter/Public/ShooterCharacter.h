@@ -14,6 +14,15 @@ class USpringArmComponent;
 class USoundCue;
 class UFireMontage;
 
+UENUM(BlueprintType)
+enum class EAmmoType :uint8
+{
+	EAT_9mm  UMETA(DisplayName = "9mm"),
+	EAT_AR  UMETA(DisplayName = "AssaultRifle"),
+	EAT_MAX  UMETA(DisplayName = "DefaultMAX")
+};
+
+
 UCLASS()
 class THIRDPERSONSHOOTER_API AShooterCharacter : public ACharacter
 {
@@ -104,7 +113,9 @@ protected:
 
 	//Drops Currentlyy EquippedWeapon ->  Equips TraceHitWeapon
 	void SwapWeapon(AWeapon* WeaponToSwap);
-	
+
+	//Initialize the Ammo map with Ammo values
+	void  InitializeAmmoMap();
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -268,6 +279,19 @@ private:
 	//Distance Upward from the camera for the interpDestination
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Items, meta = (AllowPrivateAccess = "true"))
 	float CameraInterpElevation;
+
+	//Map to keep track of ammo of  the different ammo types
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Items, meta = (AllowPrivateAccess = "true"))
+	TMap<EAmmoType,int32> AmmoMap;
+
+	//Starting amount of 9mm Ammo
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Items, meta = (AllowPrivateAccess = "true"))
+	int32 Starting9mmAmmo;
+
+	//Starting amount of AR Ammo
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Items, meta = (AllowPrivateAccess = "true"))
+	int32 StartingARAmmo;
+	
 public:
 	//Returns Camera Boom Subobject
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const {return CameraBoom;}

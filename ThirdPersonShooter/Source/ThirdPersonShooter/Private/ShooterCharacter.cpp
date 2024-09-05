@@ -62,7 +62,11 @@ AShooterCharacter::AShooterCharacter() :
 
 	//Camera Interp Location variable
 	CameraInterpDistance(250.f),
-	CameraInterpElevation(65.f)
+	CameraInterpElevation(65.f),
+
+	//Starting Ammo Amounts
+	Starting9mmAmmo(120),
+	StartingARAmmo(90)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -143,7 +147,9 @@ void AShooterCharacter::BeginPlay()
 
 	//Spawn and Equip Default Weapon
 	EquipWeapon(SpawnDefaultWeapon());
-	
+
+	//Initialize AmmoMap
+	InitializeAmmoMap();
 }
 
 
@@ -657,4 +663,10 @@ void AShooterCharacter::GetPickUpItem(AItem* Item)
 		SwapWeapon(Weapon);
 	}
 	
+}
+
+void AShooterCharacter::InitializeAmmoMap()
+{
+	AmmoMap.Add(EAmmoType::EAT_9mm, Starting9mmAmmo);
+	AmmoMap.Add(EAmmoType::EAT_AR, StartingARAmmo);
 }
