@@ -22,65 +22,69 @@ THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_AShooterCharacter();
 THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_AShooterCharacter_NoRegister();
 THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_AWeapon_NoRegister();
 THIRDPERSONSHOOTER_API UEnum* Z_Construct_UEnum_ThirdPersonShooter_EAmmoType();
+THIRDPERSONSHOOTER_API UEnum* Z_Construct_UEnum_ThirdPersonShooter_ECombatState();
 UPackage* Z_Construct_UPackage__Script_ThirdPersonShooter();
 // End Cross Module References
 
-// Begin Enum EAmmoType
-static FEnumRegistrationInfo Z_Registration_Info_UEnum_EAmmoType;
-static UEnum* EAmmoType_StaticEnum()
+// Begin Enum ECombatState
+static FEnumRegistrationInfo Z_Registration_Info_UEnum_ECombatState;
+static UEnum* ECombatState_StaticEnum()
 {
-	if (!Z_Registration_Info_UEnum_EAmmoType.OuterSingleton)
+	if (!Z_Registration_Info_UEnum_ECombatState.OuterSingleton)
 	{
-		Z_Registration_Info_UEnum_EAmmoType.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_ThirdPersonShooter_EAmmoType, (UObject*)Z_Construct_UPackage__Script_ThirdPersonShooter(), TEXT("EAmmoType"));
+		Z_Registration_Info_UEnum_ECombatState.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_ThirdPersonShooter_ECombatState, (UObject*)Z_Construct_UPackage__Script_ThirdPersonShooter(), TEXT("ECombatState"));
 	}
-	return Z_Registration_Info_UEnum_EAmmoType.OuterSingleton;
+	return Z_Registration_Info_UEnum_ECombatState.OuterSingleton;
 }
-template<> THIRDPERSONSHOOTER_API UEnum* StaticEnum<EAmmoType>()
+template<> THIRDPERSONSHOOTER_API UEnum* StaticEnum<ECombatState>()
 {
-	return EAmmoType_StaticEnum();
+	return ECombatState_StaticEnum();
 }
-struct Z_Construct_UEnum_ThirdPersonShooter_EAmmoType_Statics
+struct Z_Construct_UEnum_ThirdPersonShooter_ECombatState_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
-		{ "EAT_9mm.DisplayName", "9mm" },
-		{ "EAT_9mm.Name", "EAmmoType::EAT_9mm" },
-		{ "EAT_AR.DisplayName", "AssaultRifle" },
-		{ "EAT_AR.Name", "EAmmoType::EAT_AR" },
-		{ "EAT_MAX.DisplayName", "DefaultMAX" },
-		{ "EAT_MAX.Name", "EAmmoType::EAT_MAX" },
+		{ "ECS_FireTimerInProgress.DisplayName", "FireTimerInProgress" },
+		{ "ECS_FireTimerInProgress.Name", "ECombatState::ECS_FireTimerInProgress" },
+		{ "ECS_MAX.DisplayName", "DefaultMAX" },
+		{ "ECS_MAX.Name", "ECombatState::ECS_MAX" },
+		{ "ECS_Reloading.DisplayName", "Reloadings" },
+		{ "ECS_Reloading.Name", "ECombatState::ECS_Reloading" },
+		{ "ECS_Unoccupied.DisplayName", "Unoccupied" },
+		{ "ECS_Unoccupied.Name", "ECombatState::ECS_Unoccupied" },
 		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
 	};
 #endif // WITH_METADATA
 	static constexpr UECodeGen_Private::FEnumeratorParam Enumerators[] = {
-		{ "EAmmoType::EAT_9mm", (int64)EAmmoType::EAT_9mm },
-		{ "EAmmoType::EAT_AR", (int64)EAmmoType::EAT_AR },
-		{ "EAmmoType::EAT_MAX", (int64)EAmmoType::EAT_MAX },
+		{ "ECombatState::ECS_Unoccupied", (int64)ECombatState::ECS_Unoccupied },
+		{ "ECombatState::ECS_FireTimerInProgress", (int64)ECombatState::ECS_FireTimerInProgress },
+		{ "ECombatState::ECS_Reloading", (int64)ECombatState::ECS_Reloading },
+		{ "ECombatState::ECS_MAX", (int64)ECombatState::ECS_MAX },
 	};
 	static const UECodeGen_Private::FEnumParams EnumParams;
 };
-const UECodeGen_Private::FEnumParams Z_Construct_UEnum_ThirdPersonShooter_EAmmoType_Statics::EnumParams = {
+const UECodeGen_Private::FEnumParams Z_Construct_UEnum_ThirdPersonShooter_ECombatState_Statics::EnumParams = {
 	(UObject*(*)())Z_Construct_UPackage__Script_ThirdPersonShooter,
 	nullptr,
-	"EAmmoType",
-	"EAmmoType",
-	Z_Construct_UEnum_ThirdPersonShooter_EAmmoType_Statics::Enumerators,
+	"ECombatState",
+	"ECombatState",
+	Z_Construct_UEnum_ThirdPersonShooter_ECombatState_Statics::Enumerators,
 	RF_Public|RF_Transient|RF_MarkAsNative,
-	UE_ARRAY_COUNT(Z_Construct_UEnum_ThirdPersonShooter_EAmmoType_Statics::Enumerators),
+	UE_ARRAY_COUNT(Z_Construct_UEnum_ThirdPersonShooter_ECombatState_Statics::Enumerators),
 	EEnumFlags::None,
 	(uint8)UEnum::ECppForm::EnumClass,
-	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UEnum_ThirdPersonShooter_EAmmoType_Statics::Enum_MetaDataParams), Z_Construct_UEnum_ThirdPersonShooter_EAmmoType_Statics::Enum_MetaDataParams)
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UEnum_ThirdPersonShooter_ECombatState_Statics::Enum_MetaDataParams), Z_Construct_UEnum_ThirdPersonShooter_ECombatState_Statics::Enum_MetaDataParams)
 };
-UEnum* Z_Construct_UEnum_ThirdPersonShooter_EAmmoType()
+UEnum* Z_Construct_UEnum_ThirdPersonShooter_ECombatState()
 {
-	if (!Z_Registration_Info_UEnum_EAmmoType.InnerSingleton)
+	if (!Z_Registration_Info_UEnum_ECombatState.InnerSingleton)
 	{
-		UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_EAmmoType.InnerSingleton, Z_Construct_UEnum_ThirdPersonShooter_EAmmoType_Statics::EnumParams);
+		UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_ECombatState.InnerSingleton, Z_Construct_UEnum_ThirdPersonShooter_ECombatState_Statics::EnumParams);
 	}
-	return Z_Registration_Info_UEnum_EAmmoType.InnerSingleton;
+	return Z_Registration_Info_UEnum_ECombatState.InnerSingleton;
 }
-// End Enum EAmmoType
+// End Enum ECombatState
 
 // Begin Class AShooterCharacter Function AutoFireReset
 struct Z_Construct_UFunction_AShooterCharacter_AutoFireReset_Statics
@@ -140,6 +144,35 @@ DEFINE_FUNCTION(AShooterCharacter::execFinishCrosshairBulletFire)
 }
 // End Class AShooterCharacter Function FinishCrosshairBulletFire
 
+// Begin Class AShooterCharacter Function FinishReloading
+struct Z_Construct_UFunction_AShooterCharacter_FinishReloading_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AShooterCharacter_FinishReloading_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AShooterCharacter, nullptr, "FinishReloading", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AShooterCharacter_FinishReloading_Statics::Function_MetaDataParams), Z_Construct_UFunction_AShooterCharacter_FinishReloading_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AShooterCharacter_FinishReloading()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AShooterCharacter_FinishReloading_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AShooterCharacter::execFinishReloading)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->FinishReloading();
+	P_NATIVE_END;
+}
+// End Class AShooterCharacter Function FinishReloading
+
 // Begin Class AShooterCharacter Function GetCrosshairSpreadMulitplier
 struct Z_Construct_UFunction_AShooterCharacter_GetCrosshairSpreadMulitplier_Statics
 {
@@ -188,6 +221,7 @@ void AShooterCharacter::StaticRegisterNativesAShooterCharacter()
 	static const FNameNativePtrPair Funcs[] = {
 		{ "AutoFireReset", &AShooterCharacter::execAutoFireReset },
 		{ "FinishCrosshairBulletFire", &AShooterCharacter::execFinishCrosshairBulletFire },
+		{ "FinishReloading", &AShooterCharacter::execFinishReloading },
 		{ "GetCrosshairSpreadMulitplier", &AShooterCharacter::execGetCrosshairSpreadMulitplier },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -586,6 +620,28 @@ struct Z_Construct_UClass_AShooterCharacter_Statics
 		{ "ToolTip", "Starting amount of AR Ammo" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CombatState_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Combat" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Combat State, can only Fire/Reload when Un-Occupied state\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Combat State, can only Fire/Reload when Un-Occupied state" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ReloadMontage_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Combat" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Reload Montage for ReloadingAnimation\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Reload Montage for ReloadingAnimation" },
+#endif
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CameraBoom;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_FollowCamera;
@@ -624,11 +680,15 @@ struct Z_Construct_UClass_AShooterCharacter_Statics
 	static const UECodeGen_Private::FMapPropertyParams NewProp_AmmoMap;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_Starting9mmAmmo;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_StartingARAmmo;
+	static const UECodeGen_Private::FBytePropertyParams NewProp_CombatState_Underlying;
+	static const UECodeGen_Private::FEnumPropertyParams NewProp_CombatState;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ReloadMontage;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_AShooterCharacter_AutoFireReset, "AutoFireReset" }, // 3918113756
 		{ &Z_Construct_UFunction_AShooterCharacter_FinishCrosshairBulletFire, "FinishCrosshairBulletFire" }, // 978334796
+		{ &Z_Construct_UFunction_AShooterCharacter_FinishReloading, "FinishReloading" }, // 1810500599
 		{ &Z_Construct_UFunction_AShooterCharacter_GetCrosshairSpreadMulitplier, "GetCrosshairSpreadMulitplier" }, // 3593035295
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -673,10 +733,13 @@ const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharact
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CameraInterpElevation = { "CameraInterpElevation", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, CameraInterpElevation), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CameraInterpElevation_MetaData), NewProp_CameraInterpElevation_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_AmmoMap_ValueProp = { "AmmoMap", nullptr, (EPropertyFlags)0x0000000000020001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_AmmoMap_Key_KeyProp_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_AmmoMap_Key_KeyProp = { "AmmoMap_Key", nullptr, (EPropertyFlags)0x0000000000020001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UEnum_ThirdPersonShooter_EAmmoType, METADATA_PARAMS(0, nullptr) }; // 551539033
-const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_AmmoMap = { "AmmoMap", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, AmmoMap), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AmmoMap_MetaData), NewProp_AmmoMap_MetaData) }; // 551539033
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_AmmoMap_Key_KeyProp = { "AmmoMap_Key", nullptr, (EPropertyFlags)0x0000000000020001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UEnum_ThirdPersonShooter_EAmmoType, METADATA_PARAMS(0, nullptr) }; // 4041452776
+const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_AmmoMap = { "AmmoMap", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, AmmoMap), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AmmoMap_MetaData), NewProp_AmmoMap_MetaData) }; // 4041452776
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_Starting9mmAmmo = { "Starting9mmAmmo", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, Starting9mmAmmo), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Starting9mmAmmo_MetaData), NewProp_Starting9mmAmmo_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_StartingARAmmo = { "StartingARAmmo", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, StartingARAmmo), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StartingARAmmo_MetaData), NewProp_StartingARAmmo_MetaData) };
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CombatState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CombatState = { "CombatState", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, CombatState), Z_Construct_UEnum_ThirdPersonShooter_ECombatState, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CombatState_MetaData), NewProp_CombatState_MetaData) }; // 3002227212
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_ReloadMontage = { "ReloadMontage", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, ReloadMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ReloadMontage_MetaData), NewProp_ReloadMontage_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShooterCharacter_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CameraBoom,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_FollowCamera,
@@ -714,6 +777,9 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShooterC
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_AmmoMap,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_Starting9mmAmmo,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_StartingARAmmo,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CombatState_Underlying,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CombatState,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_ReloadMontage,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AShooterCharacter_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AShooterCharacter_Statics::DependentSingletons[])() = {
@@ -756,13 +822,13 @@ AShooterCharacter::~AShooterCharacter() {}
 struct Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ EAmmoType_StaticEnum, TEXT("EAmmoType"), &Z_Registration_Info_UEnum_EAmmoType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 551539033U) },
+		{ ECombatState_StaticEnum, TEXT("ECombatState"), &Z_Registration_Info_UEnum_ECombatState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3002227212U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AShooterCharacter, AShooterCharacter::StaticClass, TEXT("AShooterCharacter"), &Z_Registration_Info_UClass_AShooterCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShooterCharacter), 3550885262U) },
+		{ Z_Construct_UClass_AShooterCharacter, AShooterCharacter::StaticClass, TEXT("AShooterCharacter"), &Z_Registration_Info_UClass_AShooterCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShooterCharacter), 1978181028U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_1646467609(TEXT("/Script/ThirdPersonShooter"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_1414157218(TEXT("/Script/ThirdPersonShooter"),
 	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::EnumInfo));

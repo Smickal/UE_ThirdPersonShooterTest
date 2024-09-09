@@ -67,7 +67,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F9ADF74F-715A-3C04-B4C3-3253A6F32978}</ProjectGuid>
+    <ProjectGuid>{48E21E0A-84FA-3D9F-88E0-23580CAEA70B}</ProjectGuid>
     <RootNamespace>ThirdPersonShooter</RootNamespace>
   </PropertyGroup>
   <Import Project="UECommon.props" />
@@ -280,6 +280,7 @@
     <ClCompile Include="..\..\Source\ThirdPersonShooter\Private\Weapon.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\AmmoType.h"/>
     <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\Item.h"/>
     <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\ShooterAnimInstance.h"/>
     <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\ShooterCharacter.h"/>

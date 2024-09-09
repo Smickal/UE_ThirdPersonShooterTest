@@ -14,13 +14,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define THIRDPERSONSHOOTER_ShooterCharacter_generated_h
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_29_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execGetCrosshairSpreadMulitplier); \
+	DECLARE_FUNCTION(execFinishReloading); \
 	DECLARE_FUNCTION(execAutoFireReset); \
 	DECLARE_FUNCTION(execFinishCrosshairBulletFire);
 
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_29_INCLASS_NO_PURE_DECLS \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAShooterCharacter(); \
 	friend struct Z_Construct_UClass_AShooterCharacter_Statics; \
@@ -29,7 +30,7 @@ public: \
 	DECLARE_SERIALIZER(AShooterCharacter)
 
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_29_ENHANCED_CONSTRUCTORS \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AShooterCharacter(AShooterCharacter&&); \
@@ -41,13 +42,13 @@ public: \
 	NO_API virtual ~AShooterCharacter();
 
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_26_PROLOG
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_29_GENERATED_BODY \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_31_PROLOG
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_29_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_29_INCLASS_NO_PURE_DECLS \
-	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_29_ENHANCED_CONSTRUCTORS \
+	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_INCLASS_NO_PURE_DECLS \
+	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -58,12 +59,13 @@ template<> THIRDPERSONSHOOTER_API UClass* StaticClass<class AShooterCharacter>()
 #define CURRENT_FILE_ID FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h
 
 
-#define FOREACH_ENUM_EAMMOTYPE(op) \
-	op(EAmmoType::EAT_9mm) \
-	op(EAmmoType::EAT_AR) 
+#define FOREACH_ENUM_ECOMBATSTATE(op) \
+	op(ECombatState::ECS_Unoccupied) \
+	op(ECombatState::ECS_FireTimerInProgress) \
+	op(ECombatState::ECS_Reloading) 
 
-enum class EAmmoType : uint8;
-template<> struct TIsUEnumClass<EAmmoType> { enum { Value = true }; };
-template<> THIRDPERSONSHOOTER_API UEnum* StaticEnum<EAmmoType>();
+enum class ECombatState : uint8;
+template<> struct TIsUEnumClass<ECombatState> { enum { Value = true }; };
+template<> THIRDPERSONSHOOTER_API UEnum* StaticEnum<ECombatState>();
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -3,9 +3,15 @@
 
 #include "Weapon.h"
 
-AWeapon::AWeapon():
+AWeapon::AWeapon() :
 	bIsFalling(false),
-	ThrowWeaponTime(0.7f)
+	ThrowWeaponTime(0.7f),
+	Ammo(30),
+	MagazineCapacity(30),
+	WeaponType(EWeaponType::EWT_SMG),
+	AmmoType(EAmmoType::EAT_9mm),
+	ReloadMontageSection(TEXT("Reload SMG"))
+
 {
 	PrimaryActorTick.bCanEverTick = true;
 }
@@ -48,4 +54,22 @@ void AWeapon::StopFalling()
 {
 	bIsFalling = false;
 	SetItemState(EItemState::EIS_PickUp);
+}
+
+void AWeapon::DecrementAmmo()
+{
+	if(Ammo - 1 <= 0)
+	{
+		Ammo = 0;
+	}
+	else
+	{
+		--Ammo;
+	}
+}
+
+void AWeapon::ReloadAmmo(int32 Amount)
+{
+	checkf(Ammo + Amount <= MagazineCapacity, TEXT("Attempted to Reload with more than  magazine capacity"));
+	Ammo += Amount;
 }

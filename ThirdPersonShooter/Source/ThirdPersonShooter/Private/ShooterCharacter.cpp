@@ -66,7 +66,10 @@ AShooterCharacter::AShooterCharacter() :
 
 	//Starting Ammo Amounts
 	Starting9mmAmmo(120),
-	StartingARAmmo(90)
+	StartingARAmmo(90),
+
+	//Starting State
+	CombatState(ECombatState::ECS_Unoccupied)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -235,7 +238,7 @@ void AShooterCharacter::FinishCrosshairBulletFire()
 void AShooterCharacter::FireButtonPressed()
 {
 	bFireButtonPressed = true;
-	StartFireTimer();
+	FireWeapon();
 }
 
 void AShooterCharacter::FireButtonReleased()
@@ -245,21 +248,27 @@ void AShooterCharacter::FireButtonReleased()
 
 void AShooterCharacter::StartFireTimer()
 {
-	if(bShouldFire)
-	{
-		FireWeapon();
-		bShouldFire = false;
+	CombatState = ECombatState::ECS_FireTimerInProgress;
+	GetWorldTimerManager().SetTimer(AutoFireHandle, this, &AShooterCharacter::AutoFireReset, AutomaticFireRate);
 
-		GetWorldTimerManager().SetTimer(AutoFireHandle, this, &AShooterCharacter::AutoFireReset, AutomaticFireRate);
-	}
 }
 
 void AShooterCharacter::AutoFireReset()
 {
-	bShouldFire = true;
-	if(bFireButtonPressed)
+	CombatState = ECombatState::ECS_Unoccupied;
+	
+	if(WeaponHasAmmo())
 	{
-		StartFireTimer();
+		//Tries TO Shoot again
+		if(bFireButtonPressed)
+		{
+			FireWeapon();
+		}
+	}
+	else
+	{
+		//Reload The Weapon!
+		ReloadWeapon();
 	}
 }
 
@@ -317,10 +326,11 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 	PlayerInputComponent->BindAction("AimingButton", IE_Pressed, this, &AShooterCharacter::AimingButtonPressed);
 	PlayerInputComponent->BindAction("AimingButton", IE_Released, this, &AShooterCharacter::AimingButtonReleased);
-
 	
 	PlayerInputComponent->BindAction("Select", IE_Pressed, this, &AShooterCharacter::SelectButtonPressed);
 	PlayerInputComponent->BindAction("Select", IE_Released, this, &AShooterCharacter::SelectButtonReleased);
+
+	PlayerInputComponent->BindAction("ReloadButton", IE_Pressed, this, &AShooterCharacter::ReloadButtonPressed);
 }
 
 
@@ -390,61 +400,26 @@ void AShooterCharacter::LoopUp(float Value)
 	AddControllerPitchInput(Value * turnScaleFactor);
 }
 
+
+
 void AShooterCharacter::FireWeapon()
 {
-	//UE_LOG(LogTemp, Warning, TEXT("Fire!"));
+	if(EquippedWeapon  == nullptr) return;
+	if(CombatState != ECombatState::ECS_Unoccupied) return;
 
-	//Play sound
-	if(FireSound)
+	if(WeaponHasAmmo())
 	{
-		UGameplayStatics::PlaySound2D(this, FireSound, 0.25f);
-	}
-
-	const USkeletalMeshSocket* BarrelSocket = GetMesh()->GetSocketByName("BarrelSocket");
-	if(BarrelSocket)
-	{
-		//Play MuzzleFlash FX
-		const FTransform SocketTransform = BarrelSocket->GetSocketTransform(GetMesh());
-		if(MuzzleFlash)
-		{
-			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), MuzzleFlash, SocketTransform);
-		}
-
-		FVector BeamEndLocation;
-		bool bBeamEnd = GetBeamEndLocation(SocketTransform.GetLocation(), BeamEndLocation);
-
-		if(bBeamEnd)
-		{
-			//Spawn Impact particles after updating BeamEndPoint Location
-			if(ImpactParticle)
-			{
-				UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactParticle, BeamEndLocation);
-			}
-				
-			if(BeamParticle)
-			{
-				UParticleSystemComponent* Beam = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), BeamParticle, SocketTransform.GetLocation());
-				if(Beam)
-				{
-					//Tries To set the End target of the parameter in BeamParticle Effect,
-					//With The Target name "Target"
-					Beam->SetVectorParameter(FName("Target"), BeamEndLocation);
-				}
-			}
-		}
+		PlayFireSound();
+		SendBullets();
+		PlayGunFireMontage();
 		
+		//Subtract 1 from the weapon Ammo
+		EquippedWeapon->DecrementAmmo(); 
+	
+		//Start Bullet Timer  For Crosshair
+		StartCrosshairBulletFire();
+		StartFireTimer();
 	}
-		
-	//Play Animation Montage
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
-	if(AnimInstance && HipFireMontage)
-	{
-		AnimInstance->Montage_Play(HipFireMontage);
-		AnimInstance->Montage_JumpToSection(FName("StartFire"));
-	}
-
-	//Start Bullet Timer  For Crosshair
-	StartCrosshairBulletFire();
 }
 
 bool AShooterCharacter::GetBeamEndLocation(const FVector& MuzzleSocketLocation, FVector& OutBeamLocation)
@@ -670,3 +645,142 @@ void AShooterCharacter::InitializeAmmoMap()
 	AmmoMap.Add(EAmmoType::EAT_9mm, Starting9mmAmmo);
 	AmmoMap.Add(EAmmoType::EAT_AR, StartingARAmmo);
 }
+
+bool AShooterCharacter::WeaponHasAmmo()
+{
+	if(EquippedWeapon == nullptr) return false;
+
+	return  EquippedWeapon->GetAmmo() > 0 ;
+}
+
+void AShooterCharacter::PlayFireSound()
+{
+	//Play Sound SFX
+	if(FireSound)
+	{
+		UGameplayStatics::PlaySound2D(this, FireSound, 0.25f);
+	}
+}
+
+void AShooterCharacter::SendBullets()
+{
+	const USkeletalMeshSocket* BarrelSocket = EquippedWeapon->GetItemMesh()->GetSocketByName("BarrelSocket");
+	if(BarrelSocket)
+	{
+		//Play MuzzleFlash FX
+		const FTransform SocketTransform = BarrelSocket->GetSocketTransform(EquippedWeapon->GetItemMesh());
+		if(MuzzleFlash)
+		{
+			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), MuzzleFlash, SocketTransform);
+		}
+
+		//Sends A Bullet
+		FVector BeamEndLocation;
+		bool bBeamEnd = GetBeamEndLocation(SocketTransform.GetLocation(), BeamEndLocation);
+
+		if(bBeamEnd)
+		{
+			//Spawn Impact particles after updating BeamEndPoint Location
+			if(ImpactParticle)
+			{
+				UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactParticle, BeamEndLocation);
+			}
+				
+			if(BeamParticle)
+			{
+				UParticleSystemComponent* Beam = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), BeamParticle, SocketTransform.GetLocation());
+				if(Beam)
+				{
+					//Tries To set the End target of the parameter in BeamParticle Effect,
+					//With The Target name "Target"
+					Beam->SetVectorParameter(FName("Target"), BeamEndLocation);
+				}
+			}
+		}
+
+		
+		
+	}
+}
+
+void AShooterCharacter::PlayGunFireMontage()
+{
+	//Play HipFire Animation Montage
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if(AnimInstance && HipFireMontage)
+	{
+		AnimInstance->Montage_Play(HipFireMontage);
+		AnimInstance->Montage_JumpToSection(FName("StartFire"));
+	}
+}
+
+void AShooterCharacter::ReloadButtonPressed()
+{
+	ReloadWeapon();
+}
+
+void AShooterCharacter::ReloadWeapon()
+{
+	if(CombatState != ECombatState::ECS_Unoccupied) return;
+	if(EquippedWeapon == nullptr) return;
+
+	//Do We Have ammo of the correct type
+	if(CarryingAmmo()) 
+	{
+		CombatState = ECombatState::ECS_Reloading;
+		FName MontageSection(EquippedWeapon->GetReloadMontage());
+		
+		UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+		if(AnimInstance && ReloadMontage)
+		{
+			AnimInstance->Montage_Play(ReloadMontage);
+			AnimInstance->Montage_JumpToSection(MontageSection);
+		}
+	}
+}
+
+void AShooterCharacter::FinishReloading()
+{
+	//Update the combat State
+	CombatState = ECombatState::ECS_Unoccupied;
+
+	if(EquippedWeapon == nullptr) return;
+
+	const auto AmmoType = EquippedWeapon->GetAmmoType();
+	if(AmmoMap.Contains(AmmoType))
+	{
+		//Amount of ammo that the character is carrying of the equipped ammoType
+		int32 CarriedAmmo = AmmoMap[AmmoType];
+
+		//space left from the magazine of the equip ammo
+		const auto MagEmptySpace = EquippedWeapon->GetMagazineCapacity() - EquippedWeapon->GetAmmo();
+
+		if(MagEmptySpace > CarriedAmmo)
+		{
+			//Reload The Magazine with all the ammo we're carying
+			EquippedWeapon->ReloadAmmo(CarriedAmmo);
+			CarriedAmmo = 0;
+		}
+		else
+		{
+			//Fill the magazine
+			EquippedWeapon->ReloadAmmo(MagEmptySpace);
+			CarriedAmmo -= MagEmptySpace;
+		}
+		AmmoMap.Add(AmmoType, CarriedAmmo);
+	}
+}
+
+bool AShooterCharacter::CarryingAmmo()
+{
+	if(EquippedWeapon == nullptr) return  false;
+
+	auto Ammotype = EquippedWeapon->GetAmmoType();
+	if(AmmoMap.Contains(Ammotype))
+	{
+		return AmmoMap[Ammotype] > 0 ;
+	}
+	
+	return false;
+}
+

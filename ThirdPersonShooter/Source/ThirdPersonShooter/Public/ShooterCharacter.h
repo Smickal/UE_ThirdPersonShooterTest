@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Particles/ParticleSystem.h"
+#include "AmmoType.h"
+
 #include "ShooterCharacter.generated.h"
 
 class AWeapon;
@@ -14,14 +16,17 @@ class USpringArmComponent;
 class USoundCue;
 class UFireMontage;
 
-UENUM(BlueprintType)
-enum class EAmmoType :uint8
-{
-	EAT_9mm  UMETA(DisplayName = "9mm"),
-	EAT_AR  UMETA(DisplayName = "AssaultRifle"),
-	EAT_MAX  UMETA(DisplayName = "DefaultMAX")
-};
 
+
+UENUM(BlueprintType)
+enum class ECombatState : uint8
+{
+	ECS_Unoccupied UMETA(DisplayName = "Unoccupied"),
+	ECS_FireTimerInProgress UMETA(DisplayName = "FireTimerInProgress"),
+	ECS_Reloading UMETA(DisplayName = "Reloadings"),
+	
+	ECS_MAX  UMETA(DisplayName = "DefaultMAX")
+};
 
 UCLASS()
 class THIRDPERSONSHOOTER_API AShooterCharacter : public ACharacter
@@ -63,7 +68,9 @@ protected:
 	 *@Param Value The Input from Mouse movement.
 	 */
 	void LoopUp(float Value);
-	
+
+
+
 	//Called When The fire button is pressed.
 	void FireWeapon();
 
@@ -116,6 +123,26 @@ protected:
 
 	//Initialize the Ammo map with Ammo values
 	void  InitializeAmmoMap();
+
+	//Check to make sure the weapon has Ammo
+	bool WeaponHasAmmo();
+
+	//PlayFireSound
+	//Try's to send  bullet
+	void PlayFireSound();
+	void SendBullets();
+	void PlayGunFireMontage();
+
+	//Bound to R Key!
+	void ReloadButtonPressed();
+	//Handle Reloading  of the Weapon
+	void ReloadWeapon();
+
+	UFUNCTION(BlueprintCallable)
+	void FinishReloading();
+
+	//Checks to see if the gun has the same ammoType that is carried by the player
+	bool CarryingAmmo();
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -282,8 +309,8 @@ private:
 
 	//Map to keep track of ammo of  the different ammo types
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Items, meta = (AllowPrivateAccess = "true"))
-	TMap<EAmmoType,int32> AmmoMap;
-
+	TMap<EAmmoType, int32> AmmoMap;
+	
 	//Starting amount of 9mm Ammo
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Items, meta = (AllowPrivateAccess = "true"))
 	int32 Starting9mmAmmo;
@@ -291,7 +318,14 @@ private:
 	//Starting amount of AR Ammo
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Items, meta = (AllowPrivateAccess = "true"))
 	int32 StartingARAmmo;
-	
+
+	//Combat State, can only Fire/Reload when Un-Occupied state
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Combat, meta = (AllowPrivateAccess = "true"))
+	ECombatState CombatState;
+
+	//Reload Montage for ReloadingAnimation
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Combat, meta = (AllowPrivateAccess = "true"))
+	UAnimMontage* ReloadMontage;
 public:
 	//Returns Camera Boom Subobject
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const {return CameraBoom;}
