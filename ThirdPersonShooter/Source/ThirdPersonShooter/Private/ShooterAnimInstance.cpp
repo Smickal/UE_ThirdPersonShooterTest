@@ -7,6 +7,26 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 
+UShooterAnimInstance::UShooterAnimInstance() :
+	Speed(0),
+	bIsinAir(false),
+	bIsAccelerating(false),
+	
+	MovementOffsetYaw(0),
+	TIPCharacterYaw(0),
+	TIPCharacterYawLastFrame(0),
+	bAiming(false),
+	RootYawOffset(0),
+	Pitch(0),
+	bIsReloading(false),
+	OffsetState(EOffsetState::EOS_Hip),
+	CharacterRotation(FRotator(0.f)),
+	CharacterRotationLastFrame(FRotator(0.f)),
+	YawDelta(0.f)
+{
+	
+}
+
 void UShooterAnimInstance::UpdateAnimationProperties(float DeltaTime)
 {
 	if(ShooterCharacter == nullptr)
@@ -15,6 +35,8 @@ void UShooterAnimInstance::UpdateAnimationProperties(float DeltaTime)
 	}
 	if(ShooterCharacter)
 	{
+		bIsReloading = ShooterCharacter->GetCombatState() == ECombatState::ECS_Reloading;
+		
 		//Get The lateral Speed Of the character from the velocity.
 		FVector Velocity {ShooterCharacter->GetVelocity()};
 		Velocity.Z = 0;
@@ -57,9 +79,27 @@ void UShooterAnimInstance::UpdateAnimationProperties(float DeltaTime)
 			GEngine->AddOnScreenDebugMessage(1,0.f,FColor::White, MovementOffsetYawMssg);
 		}
 		*/
+
+		if(bIsReloading)
+		{
+			OffsetState = EOffsetState::EOS_Reloading;
+		}
+		else if(bIsinAir)
+		{
+			OffsetState = EOffsetState::EOS_InAir;
+		}
+		else if(ShooterCharacter->GetAiming())
+		{
+			OffsetState = EOffsetState::EOS_Aiming;
+		}
+		else
+		{
+			OffsetState = EOffsetState::EOS_Hip;
+		}
 	}
 	 
-	
+	TurnInPlace();
+	Lean(DeltaTime);
 }
 
 void UShooterAnimInstance::NativeInitializeAnimation()
@@ -67,4 +107,86 @@ void UShooterAnimInstance::NativeInitializeAnimation()
 	Super::NativeInitializeAnimation();
 
 	ShooterCharacter = Cast<AShooterCharacter>(TryGetPawnOwner());
+}
+
+void UShooterAnimInstance::TurnInPlace()
+{
+	if(ShooterCharacter == nullptr) return;
+	Pitch = ShooterCharacter->GetBaseAimRotation().Pitch;
+	
+	if(Speed > 0 || bIsinAir)
+	{
+		//Dont want to turn in place; Because
+		//Character is moving
+
+		RootYawOffset = 0.f;
+		TIPCharacterYaw = ShooterCharacter->GetActorRotation().Yaw;
+		TIPCharacterYawLastFrame = TIPCharacterYaw;
+
+		RotationCurveLastFrame = 0.f;
+		RotationCurve = 0.f;
+	}
+	else
+	{
+		TIPCharacterYawLastFrame = TIPCharacterYaw;
+		TIPCharacterYaw = ShooterCharacter->GetActorRotation().Yaw;
+
+		const auto TIPYawDelta {TIPCharacterYaw - TIPCharacterYawLastFrame};
+
+		//Root YawOffSet, Updated and Clamped [-180,180]
+		RootYawOffset = UKismetMathLibrary::NormalizeAxis(RootYawOffset - TIPYawDelta);
+
+		//1.0f if Turning, 0.0f if not
+		const float Turning{ GetCurveValue(TEXT("Turning")) };
+		if(Turning > 0)
+		{
+			RotationCurveLastFrame = RotationCurve;
+			RotationCurve = GetCurveValue(TEXT("Rotation"));
+
+			const auto RotationCurveDelta {RotationCurve - RotationCurveLastFrame};
+
+			//If RootYawOffset > 0 -> The Character is turning left;
+			//If RootYawOffset < 0 -> The Character is turning right;
+			RootYawOffset > 0 ? RootYawOffset -= RotationCurveDelta : RootYawOffset += RotationCurveDelta;
+			
+			//Tries to compensate the rotation, IF there's an excess amount more than 90 degree
+			const float ABSRootYawOffset {FMath::Abs(RootYawOffset)};
+			if(ABSRootYawOffset > 90.f)
+			{
+				const float YawExcess {ABSRootYawOffset - 90.f};
+				RootYawOffset > 0 ? RootYawOffset -= YawExcess : RootYawOffset += YawExcess;
+			}
+			
+		}
+		
+		// if(GEngine)
+		// {
+		// 	GEngine->AddOnScreenDebugMessage(1, -1.f, FColor::Blue, FString::Printf(TEXT("Character Yaw: %f"), CharacterYaw));
+		// 	GEngine->AddOnScreenDebugMessage(2, -1.f, FColor::Red, FString::Printf(TEXT("Root Yaw Offset: %f"), RootYawOffset));
+		// 	
+		// }
+		
+	}
+		
+	
+}
+
+void UShooterAnimInstance::Lean(float DeltaTime)
+{
+	if(ShooterCharacter == nullptr) return;
+
+	CharacterRotationLastFrame= CharacterRotation;
+	CharacterRotation = ShooterCharacter->GetActorRotation();
+
+	const FRotator Delta {UKismetMathLibrary::NormalizedDeltaRotator(CharacterRotation, CharacterRotationLastFrame)};
+	
+	const double Target {(Delta.Yaw /DeltaTime) };
+	const double Interp{FMath::FInterpTo(YawDelta, Target, DeltaTime, 6.0f)};
+	YawDelta = FMath::Clamp(Interp, -90.f, 90.f);
+
+	// if(GEngine)
+	// {
+	// 	GEngine->AddOnScreenDebugMessage(1, -1, FColor::Red, FString::Printf(TEXT("YawDelta: %f"), YawDelta ));
+	// 	GEngine->AddOnScreenDebugMessage(2, -1, FColor::Red, FString::Printf(TEXT("CharacterYaw: %f"), CharacterRotation.Yaw ));
+	// }
 }

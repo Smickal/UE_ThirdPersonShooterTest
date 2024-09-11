@@ -16,6 +16,8 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 #define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execGetCrosshairSpreadMulitplier); \
+	DECLARE_FUNCTION(execReleaseClip); \
+	DECLARE_FUNCTION(execGrabClip); \
 	DECLARE_FUNCTION(execFinishReloading); \
 	DECLARE_FUNCTION(execAutoFireReset); \
 	DECLARE_FUNCTION(execFinishCrosshairBulletFire);

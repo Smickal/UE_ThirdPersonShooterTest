@@ -15,8 +15,72 @@ ENGINE_API UClass* Z_Construct_UClass_UAnimInstance();
 THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_AShooterCharacter_NoRegister();
 THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_UShooterAnimInstance();
 THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_UShooterAnimInstance_NoRegister();
+THIRDPERSONSHOOTER_API UEnum* Z_Construct_UEnum_ThirdPersonShooter_EOffsetState();
 UPackage* Z_Construct_UPackage__Script_ThirdPersonShooter();
 // End Cross Module References
+
+// Begin Enum EOffsetState
+static FEnumRegistrationInfo Z_Registration_Info_UEnum_EOffsetState;
+static UEnum* EOffsetState_StaticEnum()
+{
+	if (!Z_Registration_Info_UEnum_EOffsetState.OuterSingleton)
+	{
+		Z_Registration_Info_UEnum_EOffsetState.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_ThirdPersonShooter_EOffsetState, (UObject*)Z_Construct_UPackage__Script_ThirdPersonShooter(), TEXT("EOffsetState"));
+	}
+	return Z_Registration_Info_UEnum_EOffsetState.OuterSingleton;
+}
+template<> THIRDPERSONSHOOTER_API UEnum* StaticEnum<EOffsetState>()
+{
+	return EOffsetState_StaticEnum();
+}
+struct Z_Construct_UEnum_ThirdPersonShooter_EOffsetState_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "EOS_Aiming.DisplayName", "Aiming" },
+		{ "EOS_Aiming.Name", "EOffsetState::EOS_Aiming" },
+		{ "EOS_Hip.DisplayName", "HipAiming" },
+		{ "EOS_Hip.Name", "EOffsetState::EOS_Hip" },
+		{ "EOS_InAir.DisplayName", "InAir" },
+		{ "EOS_InAir.Name", "EOffsetState::EOS_InAir" },
+		{ "EOS_Max.DisplayName", "DefaultMAX" },
+		{ "EOS_Max.Name", "EOffsetState::EOS_Max" },
+		{ "EOS_Reloading.DisplayName", "Reloading" },
+		{ "EOS_Reloading.Name", "EOffsetState::EOS_Reloading" },
+		{ "ModuleRelativePath", "Public/ShooterAnimInstance.h" },
+	};
+#endif // WITH_METADATA
+	static constexpr UECodeGen_Private::FEnumeratorParam Enumerators[] = {
+		{ "EOffsetState::EOS_Aiming", (int64)EOffsetState::EOS_Aiming },
+		{ "EOffsetState::EOS_Hip", (int64)EOffsetState::EOS_Hip },
+		{ "EOffsetState::EOS_Reloading", (int64)EOffsetState::EOS_Reloading },
+		{ "EOffsetState::EOS_InAir", (int64)EOffsetState::EOS_InAir },
+		{ "EOffsetState::EOS_Max", (int64)EOffsetState::EOS_Max },
+	};
+	static const UECodeGen_Private::FEnumParams EnumParams;
+};
+const UECodeGen_Private::FEnumParams Z_Construct_UEnum_ThirdPersonShooter_EOffsetState_Statics::EnumParams = {
+	(UObject*(*)())Z_Construct_UPackage__Script_ThirdPersonShooter,
+	nullptr,
+	"EOffsetState",
+	"EOffsetState",
+	Z_Construct_UEnum_ThirdPersonShooter_EOffsetState_Statics::Enumerators,
+	RF_Public|RF_Transient|RF_MarkAsNative,
+	UE_ARRAY_COUNT(Z_Construct_UEnum_ThirdPersonShooter_EOffsetState_Statics::Enumerators),
+	EEnumFlags::None,
+	(uint8)UEnum::ECppForm::EnumClass,
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UEnum_ThirdPersonShooter_EOffsetState_Statics::Enum_MetaDataParams), Z_Construct_UEnum_ThirdPersonShooter_EOffsetState_Statics::Enum_MetaDataParams)
+};
+UEnum* Z_Construct_UEnum_ThirdPersonShooter_EOffsetState()
+{
+	if (!Z_Registration_Info_UEnum_EOffsetState.InnerSingleton)
+	{
+		UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_EOffsetState.InnerSingleton, Z_Construct_UEnum_ThirdPersonShooter_EOffsetState_Statics::EnumParams);
+	}
+	return Z_Registration_Info_UEnum_EOffsetState.InnerSingleton;
+}
+// End Enum EOffsetState
 
 // Begin Class UShooterAnimInstance Function UpdateAnimationProperties
 struct Z_Construct_UFunction_UShooterAnimInstance_UpdateAnimationProperties_Statics
@@ -78,9 +142,6 @@ struct Z_Construct_UClass_UShooterAnimInstance_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "/**\n * \n */" },
-#endif
 		{ "HideCategories", "AnimInstance" },
 		{ "IncludePath", "ShooterAnimInstance.h" },
 		{ "ModuleRelativePath", "Public/ShooterAnimInstance.h" },
@@ -150,6 +211,61 @@ struct Z_Construct_UClass_UShooterAnimInstance_Statics
 		{ "Category", "Movement" },
 		{ "ModuleRelativePath", "Public/ShooterAnimInstance.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RootYawOffset_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Turn In Place" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//The offset from the controller yaw to the root bone yaw\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterAnimInstance.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "The offset from the controller yaw to the root bone yaw" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Pitch_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Turn In Place" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//The Pitch of the aim rotation used for aim offset\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterAnimInstance.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "The Pitch of the aim rotation used for aim offset" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsReloading_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Turn In Place" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//True when reloading use to prefent aim offset when aiming\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterAnimInstance.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "True when reloading use to prefent aim offset when aiming" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OffsetState_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Turn In Place" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Offset state, used to determine which aim offset to use\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterAnimInstance.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Offset state, used to determine which aim offset to use" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_YawDelta_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Lean" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Yaw delta used for leaning in DeltaSpace\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterAnimInstance.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Yaw delta used for leaning in DeltaSpace" },
+#endif
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ShooterCharacter;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_Speed;
@@ -161,6 +277,13 @@ struct Z_Construct_UClass_UShooterAnimInstance_Statics
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_LastMovementOffsetYaw;
 	static void NewProp_bAiming_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bAiming;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_RootYawOffset;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Pitch;
+	static void NewProp_bIsReloading_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsReloading;
+	static const UECodeGen_Private::FBytePropertyParams NewProp_OffsetState_Underlying;
+	static const UECodeGen_Private::FEnumPropertyParams NewProp_OffsetState;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_YawDelta;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -191,6 +314,16 @@ void Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bAiming_SetBit(voi
 	((UShooterAnimInstance*)Obj)->bAiming = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bAiming = { "bAiming", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UShooterAnimInstance), &Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bAiming_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bAiming_MetaData), NewProp_bAiming_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_RootYawOffset = { "RootYawOffset", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UShooterAnimInstance, RootYawOffset), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RootYawOffset_MetaData), NewProp_RootYawOffset_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_Pitch = { "Pitch", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UShooterAnimInstance, Pitch), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Pitch_MetaData), NewProp_Pitch_MetaData) };
+void Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsReloading_SetBit(void* Obj)
+{
+	((UShooterAnimInstance*)Obj)->bIsReloading = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsReloading = { "bIsReloading", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UShooterAnimInstance), &Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsReloading_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsReloading_MetaData), NewProp_bIsReloading_MetaData) };
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_OffsetState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_OffsetState = { "OffsetState", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UShooterAnimInstance, OffsetState), Z_Construct_UEnum_ThirdPersonShooter_EOffsetState, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OffsetState_MetaData), NewProp_OffsetState_MetaData) }; // 1439190398
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_YawDelta = { "YawDelta", nullptr, (EPropertyFlags)0x0040000000020005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UShooterAnimInstance, YawDelta), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_YawDelta_MetaData), NewProp_YawDelta_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UShooterAnimInstance_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_ShooterCharacter,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_Speed,
@@ -199,6 +332,12 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UShooterA
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_MovementOffsetYaw,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_LastMovementOffsetYaw,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bAiming,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_RootYawOffset,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_Pitch,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsReloading,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_OffsetState_Underlying,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_OffsetState,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_YawDelta,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UShooterAnimInstance_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UShooterAnimInstance_Statics::DependentSingletons[])() = {
@@ -233,7 +372,6 @@ template<> THIRDPERSONSHOOTER_API UClass* StaticClass<UShooterAnimInstance>()
 {
 	return UShooterAnimInstance::StaticClass();
 }
-UShooterAnimInstance::UShooterAnimInstance(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
 DEFINE_VTABLE_PTR_HELPER_CTOR(UShooterAnimInstance);
 UShooterAnimInstance::~UShooterAnimInstance() {}
 // End Class UShooterAnimInstance
@@ -241,13 +379,16 @@ UShooterAnimInstance::~UShooterAnimInstance() {}
 // Begin Registration
 struct Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterAnimInstance_h_Statics
 {
+	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
+		{ EOffsetState_StaticEnum, TEXT("EOffsetState"), &Z_Registration_Info_UEnum_EOffsetState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1439190398U) },
+	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UShooterAnimInstance, UShooterAnimInstance::StaticClass, TEXT("UShooterAnimInstance"), &Z_Registration_Info_UClass_UShooterAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UShooterAnimInstance), 791289191U) },
+		{ Z_Construct_UClass_UShooterAnimInstance, UShooterAnimInstance::StaticClass, TEXT("UShooterAnimInstance"), &Z_Registration_Info_UClass_UShooterAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UShooterAnimInstance), 1123994142U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterAnimInstance_h_1549253287(TEXT("/Script/ThirdPersonShooter"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterAnimInstance_h_1018907879(TEXT("/Script/ThirdPersonShooter"),
 	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterAnimInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterAnimInstance_h_Statics::ClassInfo),
 	nullptr, 0,
-	nullptr, 0);
+	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterAnimInstance_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterAnimInstance_h_Statics::EnumInfo));
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

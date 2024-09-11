@@ -10,7 +10,8 @@ AWeapon::AWeapon() :
 	MagazineCapacity(30),
 	WeaponType(EWeaponType::EWT_SMG),
 	AmmoType(EAmmoType::EAT_9mm),
-	ReloadMontageSection(TEXT("Reload SMG"))
+	ReloadMontageSection(TEXT("Reload SMG")),
+	ClipBoneName(TEXT("smg_clip"))
 
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -72,4 +73,9 @@ void AWeapon::ReloadAmmo(int32 Amount)
 {
 	checkf(Ammo + Amount <= MagazineCapacity, TEXT("Attempted to Reload with more than  magazine capacity"));
 	Ammo += Amount;
+}
+
+bool AWeapon::IsClipFull()
+{
+	return Ammo >= MagazineCapacity;
 }

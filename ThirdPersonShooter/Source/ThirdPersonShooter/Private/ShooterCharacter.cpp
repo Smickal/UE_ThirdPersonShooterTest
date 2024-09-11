@@ -97,7 +97,8 @@ AShooterCharacter::AShooterCharacter() :
 	GetCharacterMovement()->JumpZVelocity = 600.f;
 	GetCharacterMovement()->AirControl = 0.2f;
 
-	
+	//Create HandSceneComponent 
+	HandSceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("HandSceneComponent"));
 }
 
 // Called when the game starts or when spawned
@@ -606,6 +607,10 @@ void AShooterCharacter::SelectButtonPressed()
 	if(TraceHitItem == nullptr) return;
 
 	TraceHitItem->StartItemCurve(this);
+	if(TraceHitItem->GetPickUpSound())
+	{
+		UGameplayStatics::PlaySound2D(this, TraceHitItem->GetPickUpSound());
+	}
 }
 
 void AShooterCharacter::SelectButtonReleased()
@@ -632,6 +637,11 @@ FVector AShooterCharacter::GetCameraInterpLocation()
 
 void AShooterCharacter::GetPickUpItem(AItem* Item)
 {
+	if(Item->GetEquipSound())
+	{
+		UGameplayStatics::PlaySound2D(this, Item->GetEquipSound());
+	}
+	
 	auto Weapon = Cast<AWeapon>(Item);
 	if(Weapon)
 	{
@@ -725,7 +735,7 @@ void AShooterCharacter::ReloadWeapon()
 	if(EquippedWeapon == nullptr) return;
 
 	//Do We Have ammo of the correct type
-	if(CarryingAmmo()) 
+	if(CarryingAmmo()  && !EquippedWeapon->IsClipFull()) 
 	{
 		CombatState = ECombatState::ECS_Reloading;
 		FName MontageSection(EquippedWeapon->GetReloadMontage());
@@ -782,5 +792,29 @@ bool AShooterCharacter::CarryingAmmo()
 	}
 	
 	return false;
+}
+
+void AShooterCharacter::GrabClip()
+{
+	if(EquippedWeapon == nullptr) return;
+	if(HandSceneComponent == nullptr) return;
+	
+	//index for the clop bone on Equipped Weapon
+	int32 ClipBoneIndex {EquippedWeapon->GetItemMesh()->GetBoneIndex(EquippedWeapon->GetClipBoneName())};
+
+	//Store the transform of the clip
+	ClipTransform = EquippedWeapon->GetItemMesh()->GetBoneTransform(ClipBoneIndex);
+
+	FAttachmentTransformRules AttachmentTransformRules(EAttachmentRule::KeepRelative,true);
+	HandSceneComponent->AttachToComponent(GetMesh(), AttachmentTransformRules, FName("Hand_L"));
+	HandSceneComponent->SetWorldTransform(ClipTransform);
+
+	EquippedWeapon->SetMovingClip(true);
+	
+}
+
+void AShooterCharacter::ReleaseClip()
+{
+	EquippedWeapon->SetMovingClip(false);
 }
 

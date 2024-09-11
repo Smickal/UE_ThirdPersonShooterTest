@@ -11,6 +11,11 @@
             "e:\\games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
             "e:\\games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\shapecomponent.generated.h",
             "e:\\games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\spherecomponent.generated.h",
+            "e:\\games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\sound\\soundcue.h",
+            "e:\\games\\ue_5.4\\engine\\source\\runtime\\audioextensions\\public\\iaudioparametertransmitter.h",
+            "e:\\games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\sound\\soundnode.h",
+            "e:\\games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\soundnode.generated.h",
+            "e:\\games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\soundcue.generated.h",
             "d:\\ue projects\\7_thirdpersonshooter\\ue_thirdpersonshootertest\\thirdpersonshooter\\intermediate\\build\\win64\\unrealeditor\\inc\\thirdpersonshooter\\uht\\item.generated.h"
         ],
         "ImportedModules": [],

@@ -59,6 +59,16 @@ private:
 	//The  name of the reload Montage that will be set to this weapon
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon Properties", meta = (AllowPrivateAccess = "true"))
 	FName ReloadMontageSection;
+
+	//True when moving the clip when reloading
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapon Properties", meta = (AllowPrivateAccess = "true"))
+	bool bIsMovingClip;
+
+	//Name For the Clip Bone
+	UPROPERTY(EditAnywhere,  BlueprintReadWrite, Category = "Weapon Properties", meta = (AllowPrivateAccess = "true"))
+	FName ClipBoneName;
+
+	
 public:
 	FORCEINLINE int32 GetAmmo() const {return  Ammo;}
 	FORCEINLINE int32 GetMagazineCapacity() const {return  MagazineCapacity;}
@@ -71,4 +81,9 @@ public:
 	FORCEINLINE FName GetReloadMontage() const {return ReloadMontageSection;}
 
 	void ReloadAmmo(int32 Amount);
+
+	FORCEINLINE FName GetClipBoneName() const {return ClipBoneName;}
+	FORCEINLINE void SetMovingClip(bool Move) {bIsMovingClip = Move;}
+
+	bool IsClipFull();
 };

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
+#include "Sound/SoundCue.h"
 #include "Item.generated.h"
 
 class AShooterCharacter;
@@ -148,6 +149,16 @@ private:
 	//Curve use to Scale the Item When interping
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
 	UCurveFloat* ItemScaleCurve;
+
+	//Sound played when item is PickUp
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
+	USoundCue* PickUpSound;
+
+	//Sound played when item is Equipped
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
+	USoundCue* EquipSound;
+
+	
 	
 public:
 	FORCEINLINE UWidgetComponent* GetPickUpWidget() const { return PickUpWidget;}
@@ -160,5 +171,7 @@ public:
 	//Called From the AShooterCharacter Class
 	void StartItemCurve(AShooterCharacter* Char);
 	
+	FORCEINLINE USoundCue* GetPickUpSound() const {return PickUpSound;}
+	FORCEINLINE USoundCue* GetEquipSound() const {return EquipSound;}
 	
 };

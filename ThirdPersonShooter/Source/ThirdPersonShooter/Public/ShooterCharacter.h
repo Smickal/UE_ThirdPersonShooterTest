@@ -143,6 +143,14 @@ protected:
 
 	//Checks to see if the gun has the same ammoType that is carried by the player
 	bool CarryingAmmo();
+
+	//Called  From AnimatioBlueprint  with GrabClip Notifier
+	UFUNCTION(BlueprintCallable)
+	void GrabClip();
+
+	//Called from AnimationBlueprint with releaseClip Notifier
+	UFUNCTION(BlueprintCallable)
+	void ReleaseClip();
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -326,6 +334,14 @@ private:
 	//Reload Montage for ReloadingAnimation
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Combat, meta = (AllowPrivateAccess = "true"))
 	UAnimMontage* ReloadMontage;
+
+	//The Transform of the clip when the  character grab the clip during reloading
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Combat, meta = (AllowPrivateAccess = "true"))
+	FTransform ClipTransform;
+
+	//Scene Component to attach to the character  name during reloading
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Combat, meta = (AllowPrivateAccess = "true"))
+	USceneComponent* HandSceneComponent;
 public:
 	//Returns Camera Boom Subobject
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const {return CameraBoom;}
@@ -342,4 +358,6 @@ public:
 	//This Func, will add/subtrac to/from overllapedItemCount and Updates bShouldTraceFromItems
 	void IncrementOverlappedItemCount(int8 Amount);
 	void GetPickUpItem(AItem* Item);
+
+	FORCEINLINE ECombatState GetCombatState() const {return  CombatState; }
 };
