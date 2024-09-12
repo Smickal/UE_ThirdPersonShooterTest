@@ -151,6 +151,17 @@ protected:
 	//Called from AnimationBlueprint with releaseClip Notifier
 	UFUNCTION(BlueprintCallable)
 	void ReleaseClip();
+
+	void CrouchButtonPressed();
+
+	virtual  void Jump() override;
+
+	//Interps capsule halfheight when crouching/Standing
+	void InterpCapsuleHalfHeight(float DeltaTime);
+
+	void Aim();
+	void StopAiming();
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -342,6 +353,41 @@ private:
 	//Scene Component to attach to the character  name during reloading
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Combat, meta = (AllowPrivateAccess = "true"))
 	USceneComponent* HandSceneComponent;
+
+	//True when Crouching
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
+	bool bIsCrouching;
+
+	//Regular Movement Speed
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
+	float BaseMovementSpeed;
+
+	//Crouch Movement Speed 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
+	float CrouchMovementSpeed;
+
+	//Current Half height of the capsule
+	float CurrentCapsuleHalfHeight;
+
+	//Half height of the capsule when standing
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement, meta = (AllowPrivateAccess = "true"))
+	float StandingCapsuleHalfHeight;
+
+	//Halg height og the capsule when crouching
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement, meta = (AllowPrivateAccess = "true"))
+	float CrouchingCapsuleHalfHeight;
+
+	//Ground friction when While Standing
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement, meta = (AllowPrivateAccess = "true"))
+	float  BaseGroundFriction;
+
+	//Ground Friction  when Crouching
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Movement, meta = (AllowPrivateAccess = "true"))
+	float CrouchingGroundFriction;
+
+	//Used For when Aiming Button IsPressed
+	bool bIsAimingButtonPressed;
+	
 public:
 	//Returns Camera Boom Subobject
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const {return CameraBoom;}
@@ -360,4 +406,6 @@ public:
 	void GetPickUpItem(AItem* Item);
 
 	FORCEINLINE ECombatState GetCombatState() const {return  CombatState; }
+	
+	FORCEINLINE bool GetIsCrouching() const {return bIsCrouching;}
 };

@@ -103,4 +103,16 @@ private:
 	//Yaw delta used for leaning in DeltaSpace
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Lean", meta = (AllowPrivateAccess = "true") )
 	float YawDelta;
+
+	//True when character is crouchingo
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Crouching , meta = (AllowPrivateAccess = "true") )
+	bool bIsCrouching;
+
+	//Change the recoil weight
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Combat , meta = (AllowPrivateAccess = "true") )
+	float RecoilWeight;
+
+	//True when turning in place
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Combat , meta = (AllowPrivateAccess = "true") )
+	bool bIsTurningInPlace;
 };

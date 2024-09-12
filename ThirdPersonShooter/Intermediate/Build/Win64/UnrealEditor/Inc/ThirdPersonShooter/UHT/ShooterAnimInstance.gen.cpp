@@ -266,6 +266,39 @@ struct Z_Construct_UClass_UShooterAnimInstance_Statics
 		{ "ToolTip", "Yaw delta used for leaning in DeltaSpace" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsCrouching_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Crouching" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//True when character is crouchingo\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterAnimInstance.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "True when character is crouchingo" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RecoilWeight_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Combat" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Change the recoil weight\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterAnimInstance.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Change the recoil weight" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsTurningInPlace_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Combat" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//True when turning in place\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterAnimInstance.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "True when turning in place" },
+#endif
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ShooterCharacter;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_Speed;
@@ -284,6 +317,11 @@ struct Z_Construct_UClass_UShooterAnimInstance_Statics
 	static const UECodeGen_Private::FBytePropertyParams NewProp_OffsetState_Underlying;
 	static const UECodeGen_Private::FEnumPropertyParams NewProp_OffsetState;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_YawDelta;
+	static void NewProp_bIsCrouching_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsCrouching;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_RecoilWeight;
+	static void NewProp_bIsTurningInPlace_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsTurningInPlace;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -324,6 +362,17 @@ const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UShooterAnimInst
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_OffsetState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_OffsetState = { "OffsetState", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UShooterAnimInstance, OffsetState), Z_Construct_UEnum_ThirdPersonShooter_EOffsetState, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OffsetState_MetaData), NewProp_OffsetState_MetaData) }; // 1439190398
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_YawDelta = { "YawDelta", nullptr, (EPropertyFlags)0x0040000000020005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UShooterAnimInstance, YawDelta), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_YawDelta_MetaData), NewProp_YawDelta_MetaData) };
+void Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsCrouching_SetBit(void* Obj)
+{
+	((UShooterAnimInstance*)Obj)->bIsCrouching = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsCrouching = { "bIsCrouching", nullptr, (EPropertyFlags)0x0040000000020005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UShooterAnimInstance), &Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsCrouching_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsCrouching_MetaData), NewProp_bIsCrouching_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_RecoilWeight = { "RecoilWeight", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UShooterAnimInstance, RecoilWeight), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RecoilWeight_MetaData), NewProp_RecoilWeight_MetaData) };
+void Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsTurningInPlace_SetBit(void* Obj)
+{
+	((UShooterAnimInstance*)Obj)->bIsTurningInPlace = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsTurningInPlace = { "bIsTurningInPlace", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UShooterAnimInstance), &Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsTurningInPlace_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsTurningInPlace_MetaData), NewProp_bIsTurningInPlace_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UShooterAnimInstance_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_ShooterCharacter,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_Speed,
@@ -338,6 +387,9 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UShooterA
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_OffsetState_Underlying,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_OffsetState,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_YawDelta,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsCrouching,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_RecoilWeight,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UShooterAnimInstance_Statics::NewProp_bIsTurningInPlace,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UShooterAnimInstance_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UShooterAnimInstance_Statics::DependentSingletons[])() = {
@@ -383,10 +435,10 @@ struct Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Pu
 		{ EOffsetState_StaticEnum, TEXT("EOffsetState"), &Z_Registration_Info_UEnum_EOffsetState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1439190398U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UShooterAnimInstance, UShooterAnimInstance::StaticClass, TEXT("UShooterAnimInstance"), &Z_Registration_Info_UClass_UShooterAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UShooterAnimInstance), 1123994142U) },
+		{ Z_Construct_UClass_UShooterAnimInstance, UShooterAnimInstance::StaticClass, TEXT("UShooterAnimInstance"), &Z_Registration_Info_UClass_UShooterAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UShooterAnimInstance), 1870737824U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterAnimInstance_h_1018907879(TEXT("/Script/ThirdPersonShooter"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterAnimInstance_h_1417024483(TEXT("/Script/ThirdPersonShooter"),
 	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterAnimInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterAnimInstance_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterAnimInstance_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterAnimInstance_h_Statics::EnumInfo));

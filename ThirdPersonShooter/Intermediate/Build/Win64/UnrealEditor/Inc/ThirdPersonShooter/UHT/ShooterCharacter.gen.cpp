@@ -739,6 +739,83 @@ struct Z_Construct_UClass_AShooterCharacter_Statics
 		{ "ToolTip", "Scene Component to attach to the character  name during reloading" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsCrouching_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Movement" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//True when Crouching\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "True when Crouching" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BaseMovementSpeed_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Movement" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Regular Movement Speed\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Regular Movement Speed" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CrouchMovementSpeed_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Movement" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Crouch Movement Speed \n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Crouch Movement Speed" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StandingCapsuleHalfHeight_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Movement" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Half height of the capsule when standing\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Half height of the capsule when standing" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CrouchingCapsuleHalfHeight_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Movement" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Halg height og the capsule when crouching\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Halg height og the capsule when crouching" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BaseGroundFriction_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Movement" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Ground friction when While Standing\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Ground friction when While Standing" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CrouchingGroundFriction_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Movement" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Ground Friction  when Crouching\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Ground Friction  when Crouching" },
+#endif
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CameraBoom;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_FollowCamera;
@@ -782,6 +859,14 @@ struct Z_Construct_UClass_AShooterCharacter_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ReloadMontage;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_ClipTransform;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_HandSceneComponent;
+	static void NewProp_bIsCrouching_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsCrouching;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_BaseMovementSpeed;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_CrouchMovementSpeed;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_StandingCapsuleHalfHeight;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_CrouchingCapsuleHalfHeight;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_BaseGroundFriction;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_CrouchingGroundFriction;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -843,6 +928,17 @@ const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_AShooterCharacte
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_ReloadMontage = { "ReloadMontage", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, ReloadMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ReloadMontage_MetaData), NewProp_ReloadMontage_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_ClipTransform = { "ClipTransform", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, ClipTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ClipTransform_MetaData), NewProp_ClipTransform_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_HandSceneComponent = { "HandSceneComponent", nullptr, (EPropertyFlags)0x00400000000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, HandSceneComponent), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HandSceneComponent_MetaData), NewProp_HandSceneComponent_MetaData) };
+void Z_Construct_UClass_AShooterCharacter_Statics::NewProp_bIsCrouching_SetBit(void* Obj)
+{
+	((AShooterCharacter*)Obj)->bIsCrouching = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_bIsCrouching = { "bIsCrouching", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AShooterCharacter), &Z_Construct_UClass_AShooterCharacter_Statics::NewProp_bIsCrouching_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsCrouching_MetaData), NewProp_bIsCrouching_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_BaseMovementSpeed = { "BaseMovementSpeed", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, BaseMovementSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BaseMovementSpeed_MetaData), NewProp_BaseMovementSpeed_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrouchMovementSpeed = { "CrouchMovementSpeed", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, CrouchMovementSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CrouchMovementSpeed_MetaData), NewProp_CrouchMovementSpeed_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_StandingCapsuleHalfHeight = { "StandingCapsuleHalfHeight", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, StandingCapsuleHalfHeight), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StandingCapsuleHalfHeight_MetaData), NewProp_StandingCapsuleHalfHeight_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrouchingCapsuleHalfHeight = { "CrouchingCapsuleHalfHeight", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, CrouchingCapsuleHalfHeight), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CrouchingCapsuleHalfHeight_MetaData), NewProp_CrouchingCapsuleHalfHeight_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_BaseGroundFriction = { "BaseGroundFriction", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, BaseGroundFriction), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BaseGroundFriction_MetaData), NewProp_BaseGroundFriction_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrouchingGroundFriction = { "CrouchingGroundFriction", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, CrouchingGroundFriction), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CrouchingGroundFriction_MetaData), NewProp_CrouchingGroundFriction_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShooterCharacter_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CameraBoom,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_FollowCamera,
@@ -885,6 +981,13 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShooterC
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_ReloadMontage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_ClipTransform,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_HandSceneComponent,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_bIsCrouching,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_BaseMovementSpeed,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrouchMovementSpeed,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_StandingCapsuleHalfHeight,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrouchingCapsuleHalfHeight,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_BaseGroundFriction,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrouchingGroundFriction,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AShooterCharacter_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AShooterCharacter_Statics::DependentSingletons[])() = {
@@ -930,10 +1033,10 @@ struct Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Pu
 		{ ECombatState_StaticEnum, TEXT("ECombatState"), &Z_Registration_Info_UEnum_ECombatState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3002227212U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AShooterCharacter, AShooterCharacter::StaticClass, TEXT("AShooterCharacter"), &Z_Registration_Info_UClass_AShooterCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShooterCharacter), 3533438768U) },
+		{ Z_Construct_UClass_AShooterCharacter, AShooterCharacter::StaticClass, TEXT("AShooterCharacter"), &Z_Registration_Info_UClass_AShooterCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShooterCharacter), 4121771538U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_190770955(TEXT("/Script/ThirdPersonShooter"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_510637373(TEXT("/Script/ThirdPersonShooter"),
 	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::EnumInfo));
