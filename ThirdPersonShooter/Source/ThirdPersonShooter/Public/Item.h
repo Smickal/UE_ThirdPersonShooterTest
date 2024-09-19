@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/SphereComponent.h"
+#include "Curves/CurveVector.h"
 #include "GameFramework/Actor.h"
 #include "Sound/SoundCue.h"
 #include "Item.generated.h"
@@ -36,6 +37,16 @@ enum class EItemState : uint8
 	EIR_MAX UMETA(DisplayName = "DefaultMAX")
 };
 
+
+UENUM(BlueprintType)
+enum class EItemType : uint8
+{
+	EIT_Ammo UMETA(DisplayName = "Ammo"),
+	EIT_Weapon UMETA(DisplayName = "Weapon"),
+
+	EIT_MAX UMETA(DisplayName = "DefaultMAX")
+};
+
 UCLASS()
 class THIRDPERSONSHOOTER_API AItem : public AActor
 {
@@ -62,18 +73,38 @@ protected:
 	void SetActiveStars();
 
 	//Sets the property of the item's component based on State
-	void SetItemProperties(EItemState State);
+	virtual void SetItemProperties(EItemState State);
 
 	//Called when ItemInterpTimer is finished
 	void FinishInterping();
 
 	//Handles Item Interpolation when EquipInterpingState
 	void ItemInterp(float DeltaTime);
+
+	//Get InterpLcoation Based on the ItemType
+	FVector GetInterpLocation();
+
+	void PlayPickUpSound();
+	
+	void PlayEquipSound();
+
+	virtual  void InitializeCustomDepth();
+
+	virtual void OnConstruction(const FTransform& Transform) override;
+	void UpdatePulse();
+	void ResetPulseTimer();
+	void StartPulseTimer();
 	
 public:	
 	// Called every frame
+	void EnableGlowMaterial();
+	void DisableGlowMaterial();
+	
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void EnableCustomDepth();
+	virtual void  DisableCustomDepth();
+	
 
 private:
 	//Skeletal Mesh For The Item
@@ -158,8 +189,51 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
 	USoundCue* EquipSound;
 
+	//The Enum of item Type of the Item's Properties
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
+	EItemType ItemType;
+
+
+	//Index of  the interp location  this item is interping to
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
+	int32 InterpLocIndex;
+
+	//Index for the material that will be changed in Runtime
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
+	int32 MaterialIndex;
+
+	//Dynamic Instance that we can change in Run-Time
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
+	UMaterialInstanceDynamic* DynamicMaterialInstance;
+
+	//Material Instance  used with the Dynamic material Instance
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
+	UMaterialInstance* MaterialInstance;
+
+	bool bCanChangeCustomDepth;
 	
-	
+	//Curve to drive the dyynamic material Parameters
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
+	UCurveVector* PulseCurve;
+
+	FTimerHandle PulseTimerHandle;
+
+	//Time for the pulseTimer
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
+	float PulseCurveTime;
+
+	UPROPERTY(VisibleAnywhere, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
+	float GlowAmount;
+
+	UPROPERTY(VisibleAnywhere, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
+	float FresnelExponent;
+
+	UPROPERTY(VisibleAnywhere, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
+	float FresnelReflectFraction;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
+	UCurveVector* InterpPulseCurve;
+
 public:
 	FORCEINLINE UWidgetComponent* GetPickUpWidget() const { return PickUpWidget;}
 	FORCEINLINE USphereComponent* GetAreaSphereComponent() const {return AreaSphere;}
@@ -173,5 +247,5 @@ public:
 	
 	FORCEINLINE USoundCue* GetPickUpSound() const {return PickUpSound;}
 	FORCEINLINE USoundCue* GetEquipSound() const {return EquipSound;}
-	
+	FORCEINLINE int32 GetItemCount() const {return ItemCount;}
 };

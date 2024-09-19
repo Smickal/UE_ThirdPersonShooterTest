@@ -16,6 +16,9 @@ ENGINE_API UClass* Z_Construct_UClass_AActor();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UCurveFloat_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_UCurveVector_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_UMaterialInstance_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_UMaterialInstanceDynamic_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
@@ -26,6 +29,7 @@ THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_AItem_NoRegister();
 THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_AShooterCharacter_NoRegister();
 THIRDPERSONSHOOTER_API UEnum* Z_Construct_UEnum_ThirdPersonShooter_EItemRarity();
 THIRDPERSONSHOOTER_API UEnum* Z_Construct_UEnum_ThirdPersonShooter_EItemState();
+THIRDPERSONSHOOTER_API UEnum* Z_Construct_UEnum_ThirdPersonShooter_EItemType();
 UMG_API UClass* Z_Construct_UClass_UWidgetComponent_NoRegister();
 UPackage* Z_Construct_UPackage__Script_ThirdPersonShooter();
 // End Cross Module References
@@ -161,6 +165,63 @@ UEnum* Z_Construct_UEnum_ThirdPersonShooter_EItemState()
 	return Z_Registration_Info_UEnum_EItemState.InnerSingleton;
 }
 // End Enum EItemState
+
+// Begin Enum EItemType
+static FEnumRegistrationInfo Z_Registration_Info_UEnum_EItemType;
+static UEnum* EItemType_StaticEnum()
+{
+	if (!Z_Registration_Info_UEnum_EItemType.OuterSingleton)
+	{
+		Z_Registration_Info_UEnum_EItemType.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_ThirdPersonShooter_EItemType, (UObject*)Z_Construct_UPackage__Script_ThirdPersonShooter(), TEXT("EItemType"));
+	}
+	return Z_Registration_Info_UEnum_EItemType.OuterSingleton;
+}
+template<> THIRDPERSONSHOOTER_API UEnum* StaticEnum<EItemType>()
+{
+	return EItemType_StaticEnum();
+}
+struct Z_Construct_UEnum_ThirdPersonShooter_EItemType_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "EIT_Ammo.DisplayName", "Ammo" },
+		{ "EIT_Ammo.Name", "EItemType::EIT_Ammo" },
+		{ "EIT_MAX.DisplayName", "DefaultMAX" },
+		{ "EIT_MAX.Name", "EItemType::EIT_MAX" },
+		{ "EIT_Weapon.DisplayName", "Weapon" },
+		{ "EIT_Weapon.Name", "EItemType::EIT_Weapon" },
+		{ "ModuleRelativePath", "Public/Item.h" },
+	};
+#endif // WITH_METADATA
+	static constexpr UECodeGen_Private::FEnumeratorParam Enumerators[] = {
+		{ "EItemType::EIT_Ammo", (int64)EItemType::EIT_Ammo },
+		{ "EItemType::EIT_Weapon", (int64)EItemType::EIT_Weapon },
+		{ "EItemType::EIT_MAX", (int64)EItemType::EIT_MAX },
+	};
+	static const UECodeGen_Private::FEnumParams EnumParams;
+};
+const UECodeGen_Private::FEnumParams Z_Construct_UEnum_ThirdPersonShooter_EItemType_Statics::EnumParams = {
+	(UObject*(*)())Z_Construct_UPackage__Script_ThirdPersonShooter,
+	nullptr,
+	"EItemType",
+	"EItemType",
+	Z_Construct_UEnum_ThirdPersonShooter_EItemType_Statics::Enumerators,
+	RF_Public|RF_Transient|RF_MarkAsNative,
+	UE_ARRAY_COUNT(Z_Construct_UEnum_ThirdPersonShooter_EItemType_Statics::Enumerators),
+	EEnumFlags::None,
+	(uint8)UEnum::ECppForm::EnumClass,
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UEnum_ThirdPersonShooter_EItemType_Statics::Enum_MetaDataParams), Z_Construct_UEnum_ThirdPersonShooter_EItemType_Statics::Enum_MetaDataParams)
+};
+UEnum* Z_Construct_UEnum_ThirdPersonShooter_EItemType()
+{
+	if (!Z_Registration_Info_UEnum_EItemType.InnerSingleton)
+	{
+		UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_EItemType.InnerSingleton, Z_Construct_UEnum_ThirdPersonShooter_EItemType_Statics::EnumParams);
+	}
+	return Z_Registration_Info_UEnum_EItemType.InnerSingleton;
+}
+// End Enum EItemType
 
 // Begin Class AItem Function OnSphereBeginOverlap
 struct Z_Construct_UFunction_AItem_OnSphereBeginOverlap_Statics
@@ -536,6 +597,103 @@ struct Z_Construct_UClass_AItem_Statics
 		{ "ToolTip", "Sound played when item is Equipped" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ItemType_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Item Properties" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//The Enum of item Type of the Item's Properties\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Item.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "The Enum of item Type of the Item's Properties" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InterpLocIndex_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Item Properties" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Index of  the interp location  this item is interping to\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Item.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Index of  the interp location  this item is interping to" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaterialIndex_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Item Properties" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Index for the material that will be changed in Runtime\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Item.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Index for the material that will be changed in Runtime" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DynamicMaterialInstance_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Item Properties" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Dynamic Instance that we can change in Run-Time\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Item.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Dynamic Instance that we can change in Run-Time" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaterialInstance_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Item Properties" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Material Instance  used with the Dynamic material Instance\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Item.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Material Instance  used with the Dynamic material Instance" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PulseCurve_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Item Properties" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Curve to drive the dyynamic material Parameters\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Item.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Curve to drive the dyynamic material Parameters" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PulseCurveTime_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Item Properties" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Time for the pulseTimer\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Item.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Time for the pulseTimer" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_GlowAmount_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Item Properties" },
+		{ "ModuleRelativePath", "Public/Item.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_FresnelExponent_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Item Properties" },
+		{ "ModuleRelativePath", "Public/Item.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_FresnelReflectFraction_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Item Properties" },
+		{ "ModuleRelativePath", "Public/Item.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InterpPulseCurve_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Item Properties" },
+		{ "ModuleRelativePath", "Public/Item.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ItemMesh;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CollisionBox;
@@ -559,6 +717,18 @@ struct Z_Construct_UClass_AItem_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ItemScaleCurve;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PickUpSound;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_EquipSound;
+	static const UECodeGen_Private::FBytePropertyParams NewProp_ItemType_Underlying;
+	static const UECodeGen_Private::FEnumPropertyParams NewProp_ItemType;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_InterpLocIndex;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_MaterialIndex;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_DynamicMaterialInstance;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_MaterialInstance;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_PulseCurve;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_PulseCurveTime;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_GlowAmount;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_FresnelExponent;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_FresnelReflectFraction;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_InterpPulseCurve;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -596,6 +766,18 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AItem_Statics:
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_ItemScaleCurve = { "ItemScaleCurve", nullptr, (EPropertyFlags)0x0040000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, ItemScaleCurve), Z_Construct_UClass_UCurveFloat_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ItemScaleCurve_MetaData), NewProp_ItemScaleCurve_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_PickUpSound = { "PickUpSound", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, PickUpSound), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PickUpSound_MetaData), NewProp_PickUpSound_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_EquipSound = { "EquipSound", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, EquipSound), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EquipSound_MetaData), NewProp_EquipSound_MetaData) };
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AItem_Statics::NewProp_ItemType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_ItemType = { "ItemType", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, ItemType), Z_Construct_UEnum_ThirdPersonShooter_EItemType, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ItemType_MetaData), NewProp_ItemType_MetaData) }; // 3108701253
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_InterpLocIndex = { "InterpLocIndex", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, InterpLocIndex), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InterpLocIndex_MetaData), NewProp_InterpLocIndex_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_MaterialIndex = { "MaterialIndex", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, MaterialIndex), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaterialIndex_MetaData), NewProp_MaterialIndex_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_DynamicMaterialInstance = { "DynamicMaterialInstance", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, DynamicMaterialInstance), Z_Construct_UClass_UMaterialInstanceDynamic_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DynamicMaterialInstance_MetaData), NewProp_DynamicMaterialInstance_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_MaterialInstance = { "MaterialInstance", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, MaterialInstance), Z_Construct_UClass_UMaterialInstance_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaterialInstance_MetaData), NewProp_MaterialInstance_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_PulseCurve = { "PulseCurve", nullptr, (EPropertyFlags)0x0040000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, PulseCurve), Z_Construct_UClass_UCurveVector_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PulseCurve_MetaData), NewProp_PulseCurve_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_PulseCurveTime = { "PulseCurveTime", nullptr, (EPropertyFlags)0x0040000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, PulseCurveTime), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PulseCurveTime_MetaData), NewProp_PulseCurveTime_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_GlowAmount = { "GlowAmount", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, GlowAmount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GlowAmount_MetaData), NewProp_GlowAmount_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_FresnelExponent = { "FresnelExponent", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, FresnelExponent), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FresnelExponent_MetaData), NewProp_FresnelExponent_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_FresnelReflectFraction = { "FresnelReflectFraction", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, FresnelReflectFraction), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FresnelReflectFraction_MetaData), NewProp_FresnelReflectFraction_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_InterpPulseCurve = { "InterpPulseCurve", nullptr, (EPropertyFlags)0x0040000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, InterpPulseCurve), Z_Construct_UClass_UCurveVector_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InterpPulseCurve_MetaData), NewProp_InterpPulseCurve_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AItem_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_ItemMesh,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_CollisionBox,
@@ -618,6 +800,18 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AItem_Sta
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_ItemScaleCurve,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_PickUpSound,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_EquipSound,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_ItemType_Underlying,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_ItemType,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_InterpLocIndex,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_MaterialIndex,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_DynamicMaterialInstance,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_MaterialInstance,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_PulseCurve,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_PulseCurveTime,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_GlowAmount,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_FresnelExponent,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_FresnelReflectFraction,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_InterpPulseCurve,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AItem_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AItem_Statics::DependentSingletons[])() = {
@@ -662,12 +856,13 @@ struct Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Pu
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
 		{ EItemRarity_StaticEnum, TEXT("EItemRarity"), &Z_Registration_Info_UEnum_EItemRarity, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2257426457U) },
 		{ EItemState_StaticEnum, TEXT("EItemState"), &Z_Registration_Info_UEnum_EItemState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2393078384U) },
+		{ EItemType_StaticEnum, TEXT("EItemType"), &Z_Registration_Info_UEnum_EItemType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3108701253U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AItem, AItem::StaticClass, TEXT("AItem"), &Z_Registration_Info_UClass_AItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AItem), 401282439U) },
+		{ Z_Construct_UClass_AItem, AItem::StaticClass, TEXT("AItem"), &Z_Registration_Info_UClass_AItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AItem), 1701853208U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_1949115809(TEXT("/Script/ThirdPersonShooter"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_1806977932(TEXT("/Script/ThirdPersonShooter"),
 	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_Statics::EnumInfo));

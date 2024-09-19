@@ -25,6 +25,7 @@ THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_AShooterCharacter_NoRegister()
 THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_AWeapon_NoRegister();
 THIRDPERSONSHOOTER_API UEnum* Z_Construct_UEnum_ThirdPersonShooter_EAmmoType();
 THIRDPERSONSHOOTER_API UEnum* Z_Construct_UEnum_ThirdPersonShooter_ECombatState();
+THIRDPERSONSHOOTER_API UScriptStruct* Z_Construct_UScriptStruct_FInterpLocation();
 UPackage* Z_Construct_UPackage__Script_ThirdPersonShooter();
 // End Cross Module References
 
@@ -87,6 +88,88 @@ UEnum* Z_Construct_UEnum_ThirdPersonShooter_ECombatState()
 	return Z_Registration_Info_UEnum_ECombatState.InnerSingleton;
 }
 // End Enum ECombatState
+
+// Begin ScriptStruct FInterpLocation
+static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_InterpLocation;
+class UScriptStruct* FInterpLocation::StaticStruct()
+{
+	if (!Z_Registration_Info_UScriptStruct_InterpLocation.OuterSingleton)
+	{
+		Z_Registration_Info_UScriptStruct_InterpLocation.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FInterpLocation, (UObject*)Z_Construct_UPackage__Script_ThirdPersonShooter(), TEXT("InterpLocation"));
+	}
+	return Z_Registration_Info_UScriptStruct_InterpLocation.OuterSingleton;
+}
+template<> THIRDPERSONSHOOTER_API UScriptStruct* StaticStruct<FInterpLocation>()
+{
+	return FInterpLocation::StaticStruct();
+}
+struct Z_Construct_UScriptStruct_FInterpLocation_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SceneComponent_MetaData[] = {
+		{ "Category", "InterpLocation" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//SceneComponent to use for it's location for  interping\n" },
+#endif
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "SceneComponent to use for it's location for  interping" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ItemCount_MetaData[] = {
+		{ "Category", "InterpLocation" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Number of  item interping to/at this sceneComp Location\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Number of  item interping to/at this sceneComp Location" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_SceneComponent;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_ItemCount;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static void* NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FInterpLocation>();
+	}
+	static const UECodeGen_Private::FStructParams StructParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UScriptStruct_FInterpLocation_Statics::NewProp_SceneComponent = { "SceneComponent", nullptr, (EPropertyFlags)0x00100000000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FInterpLocation, SceneComponent), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SceneComponent_MetaData), NewProp_SceneComponent_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FInterpLocation_Statics::NewProp_ItemCount = { "ItemCount", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FInterpLocation, ItemCount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ItemCount_MetaData), NewProp_ItemCount_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FInterpLocation_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FInterpLocation_Statics::NewProp_SceneComponent,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FInterpLocation_Statics::NewProp_ItemCount,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FInterpLocation_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FInterpLocation_Statics::StructParams = {
+	(UObject* (*)())Z_Construct_UPackage__Script_ThirdPersonShooter,
+	nullptr,
+	&NewStructOps,
+	"InterpLocation",
+	Z_Construct_UScriptStruct_FInterpLocation_Statics::PropPointers,
+	UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FInterpLocation_Statics::PropPointers),
+	sizeof(FInterpLocation),
+	alignof(FInterpLocation),
+	RF_Public|RF_Transient|RF_MarkAsNative,
+	EStructFlags(0x00000005),
+	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FInterpLocation_Statics::Struct_MetaDataParams), Z_Construct_UScriptStruct_FInterpLocation_Statics::Struct_MetaDataParams)
+};
+UScriptStruct* Z_Construct_UScriptStruct_FInterpLocation()
+{
+	if (!Z_Registration_Info_UScriptStruct_InterpLocation.InnerSingleton)
+	{
+		UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_InterpLocation.InnerSingleton, Z_Construct_UScriptStruct_FInterpLocation_Statics::StructParams);
+	}
+	return Z_Registration_Info_UScriptStruct_InterpLocation.InnerSingleton;
+}
+// End ScriptStruct FInterpLocation
 
 // Begin Class AShooterCharacter Function AutoFireReset
 struct Z_Construct_UFunction_AShooterCharacter_AutoFireReset_Statics
@@ -816,6 +899,92 @@ struct Z_Construct_UClass_AShooterCharacter_Statics
 		{ "ToolTip", "Ground Friction  when Crouching" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_WeaponInterpComp_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "ShooterCharacter" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InterpComp1_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "ShooterCharacter" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InterpComp2_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "ShooterCharacter" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InterpComp3_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "ShooterCharacter" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InterpComp4_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "ShooterCharacter" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InterpComp5_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "ShooterCharacter" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InterpComp6_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "ShooterCharacter" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InterpLocations_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "ShooterCharacter" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Array of  interpLocation Structs\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Array of  interpLocation Structs" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PickUpSoundResetTime_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Items" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Time to wait  before can play another pickUp Sound\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Time to wait  before can play another pickUp Sound" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_EquipSoundResetTime_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Items" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Time to wait  before can play another  EquipSound\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Time to wait  before can play another  EquipSound" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Inventory_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Inventory" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//An Array of item for the inventory\n" },
+#endif
+		{ "ModuleRelativePath", "Public/ShooterCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "An Array of item for the inventory" },
+#endif
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CameraBoom;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_FollowCamera;
@@ -867,6 +1036,19 @@ struct Z_Construct_UClass_AShooterCharacter_Statics
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CrouchingCapsuleHalfHeight;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_BaseGroundFriction;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CrouchingGroundFriction;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_WeaponInterpComp;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_InterpComp1;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_InterpComp2;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_InterpComp3;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_InterpComp4;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_InterpComp5;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_InterpComp6;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_InterpLocations_Inner;
+	static const UECodeGen_Private::FArrayPropertyParams NewProp_InterpLocations;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_PickUpSoundResetTime;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_EquipSoundResetTime;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_Inventory_Inner;
+	static const UECodeGen_Private::FArrayPropertyParams NewProp_Inventory;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -939,6 +1121,19 @@ const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharact
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrouchingCapsuleHalfHeight = { "CrouchingCapsuleHalfHeight", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, CrouchingCapsuleHalfHeight), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CrouchingCapsuleHalfHeight_MetaData), NewProp_CrouchingCapsuleHalfHeight_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_BaseGroundFriction = { "BaseGroundFriction", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, BaseGroundFriction), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BaseGroundFriction_MetaData), NewProp_BaseGroundFriction_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrouchingGroundFriction = { "CrouchingGroundFriction", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, CrouchingGroundFriction), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CrouchingGroundFriction_MetaData), NewProp_CrouchingGroundFriction_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_WeaponInterpComp = { "WeaponInterpComp", nullptr, (EPropertyFlags)0x004000000009001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, WeaponInterpComp), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WeaponInterpComp_MetaData), NewProp_WeaponInterpComp_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpComp1 = { "InterpComp1", nullptr, (EPropertyFlags)0x004000000009001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, InterpComp1), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InterpComp1_MetaData), NewProp_InterpComp1_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpComp2 = { "InterpComp2", nullptr, (EPropertyFlags)0x004000000009001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, InterpComp2), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InterpComp2_MetaData), NewProp_InterpComp2_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpComp3 = { "InterpComp3", nullptr, (EPropertyFlags)0x004000000009001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, InterpComp3), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InterpComp3_MetaData), NewProp_InterpComp3_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpComp4 = { "InterpComp4", nullptr, (EPropertyFlags)0x004000000009001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, InterpComp4), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InterpComp4_MetaData), NewProp_InterpComp4_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpComp5 = { "InterpComp5", nullptr, (EPropertyFlags)0x004000000009001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, InterpComp5), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InterpComp5_MetaData), NewProp_InterpComp5_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpComp6 = { "InterpComp6", nullptr, (EPropertyFlags)0x004000000009001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, InterpComp6), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InterpComp6_MetaData), NewProp_InterpComp6_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpLocations_Inner = { "InterpLocations", nullptr, (EPropertyFlags)0x0000008000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FInterpLocation, METADATA_PARAMS(0, nullptr) }; // 896932995
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpLocations = { "InterpLocations", nullptr, (EPropertyFlags)0x0040008000010015, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, InterpLocations), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InterpLocations_MetaData), NewProp_InterpLocations_MetaData) }; // 896932995
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_PickUpSoundResetTime = { "PickUpSoundResetTime", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, PickUpSoundResetTime), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PickUpSoundResetTime_MetaData), NewProp_PickUpSoundResetTime_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_EquipSoundResetTime = { "EquipSoundResetTime", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, EquipSoundResetTime), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EquipSoundResetTime_MetaData), NewProp_EquipSoundResetTime_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_Inventory_Inner = { "Inventory", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_AItem_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AShooterCharacter_Statics::NewProp_Inventory = { "Inventory", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AShooterCharacter, Inventory), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Inventory_MetaData), NewProp_Inventory_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShooterCharacter_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CameraBoom,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_FollowCamera,
@@ -988,6 +1183,19 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AShooterC
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrouchingCapsuleHalfHeight,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_BaseGroundFriction,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_CrouchingGroundFriction,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_WeaponInterpComp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpComp1,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpComp2,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpComp3,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpComp4,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpComp5,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpComp6,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpLocations_Inner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_InterpLocations,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_PickUpSoundResetTime,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_EquipSoundResetTime,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_Inventory_Inner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShooterCharacter_Statics::NewProp_Inventory,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AShooterCharacter_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AShooterCharacter_Statics::DependentSingletons[])() = {
@@ -1032,13 +1240,16 @@ struct Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Pu
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
 		{ ECombatState_StaticEnum, TEXT("ECombatState"), &Z_Registration_Info_UEnum_ECombatState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3002227212U) },
 	};
+	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
+		{ FInterpLocation::StaticStruct, Z_Construct_UScriptStruct_FInterpLocation_Statics::NewStructOps, TEXT("InterpLocation"), &Z_Registration_Info_UScriptStruct_InterpLocation, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FInterpLocation), 896932995U) },
+	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AShooterCharacter, AShooterCharacter::StaticClass, TEXT("AShooterCharacter"), &Z_Registration_Info_UClass_AShooterCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShooterCharacter), 4121771538U) },
+		{ Z_Construct_UClass_AShooterCharacter, AShooterCharacter::StaticClass, TEXT("AShooterCharacter"), &Z_Registration_Info_UClass_AShooterCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AShooterCharacter), 455681351U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_510637373(TEXT("/Script/ThirdPersonShooter"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_1013960611(TEXT("/Script/ThirdPersonShooter"),
 	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::ClassInfo),
-	nullptr, 0,
+	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::ScriptStructInfo),
 	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_Statics::EnumInfo));
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -14,7 +14,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define THIRDPERSONSHOOTER_ShooterCharacter_generated_h
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_35_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FInterpLocation_Statics; \
+	THIRDPERSONSHOOTER_API static class UScriptStruct* StaticStruct();
+
+
+template<> THIRDPERSONSHOOTER_API UScriptStruct* StaticStruct<struct FInterpLocation>();
+
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_50_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execGetCrosshairSpreadMulitplier); \
 	DECLARE_FUNCTION(execReleaseClip); \
 	DECLARE_FUNCTION(execGrabClip); \
@@ -23,7 +30,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	DECLARE_FUNCTION(execFinishCrosshairBulletFire);
 
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_INCLASS_NO_PURE_DECLS \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_50_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAShooterCharacter(); \
 	friend struct Z_Construct_UClass_AShooterCharacter_Statics; \
@@ -32,7 +39,7 @@ public: \
 	DECLARE_SERIALIZER(AShooterCharacter)
 
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_ENHANCED_CONSTRUCTORS \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_50_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AShooterCharacter(AShooterCharacter&&); \
@@ -44,13 +51,13 @@ public: \
 	NO_API virtual ~AShooterCharacter();
 
 
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_31_PROLOG
-#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_GENERATED_BODY \
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_47_PROLOG
+#define FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_50_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_INCLASS_NO_PURE_DECLS \
-	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_34_ENHANCED_CONSTRUCTORS \
+	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_50_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_50_INCLASS_NO_PURE_DECLS \
+	FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_ShooterCharacter_h_50_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

@@ -42,7 +42,7 @@
     <Filter Include="Source\ThirdPersonShooter\Private">
       <UniqueIdentifier>{8A5B6751-2FF4-31EC-84CB-C9ED3F41B2FA}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\ThirdPersonShooter\Private\AmmoType.cpp">
+    <ClCompile Include="..\..\Source\ThirdPersonShooter\Private\Ammo.cpp">
       <Filter>Source\ThirdPersonShooter\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ThirdPersonShooter\Private\Item.cpp">
@@ -66,6 +66,9 @@
     <Filter Include="Source\ThirdPersonShooter\Public">
       <UniqueIdentifier>{7F005DE6-9917-324A-8913-A1054FA4E5A0}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\Ammo.h">
+      <Filter>Source\ThirdPersonShooter\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\AmmoType.h">
       <Filter>Source\ThirdPersonShooter\Public</Filter>
     </ClInclude>

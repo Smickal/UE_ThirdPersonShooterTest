@@ -262,6 +262,9 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\ThirdPersonShooter\ThirdPersonShooter.h"/>
+    <ClCompile Include="..\..\Source\ThirdPersonShooter\Private\Ammo.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ThirdPersonShooter\Private\Item.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -280,6 +283,7 @@
     <ClCompile Include="..\..\Source\ThirdPersonShooter\Private\Weapon.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\Ammo.h"/>
     <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\AmmoType.h"/>
     <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\Item.h"/>
     <ClInclude Include="..\..\Source\ThirdPersonShooter\Public\ShooterAnimInstance.h"/>
