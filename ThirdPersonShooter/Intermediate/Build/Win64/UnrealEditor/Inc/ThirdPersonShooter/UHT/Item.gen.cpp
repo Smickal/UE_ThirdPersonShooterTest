@@ -23,6 +23,7 @@ ENGINE_API UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USphereComponent_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_UTexture2D_NoRegister();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_AItem();
 THIRDPERSONSHOOTER_API UClass* Z_Construct_UClass_AItem_NoRegister();
@@ -694,6 +695,17 @@ struct Z_Construct_UClass_AItem_Statics
 		{ "Category", "Item Properties" },
 		{ "ModuleRelativePath", "Public/Item.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_IconBackground_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Inventory" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//BCKG for this item in the inventory\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Item.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "BCKG for this item in the inventory" },
+#endif
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ItemMesh;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CollisionBox;
@@ -729,6 +741,7 @@ struct Z_Construct_UClass_AItem_Statics
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_FresnelExponent;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_FresnelReflectFraction;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_InterpPulseCurve;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_IconBackground;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -778,6 +791,7 @@ const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AItem_Statics::
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_FresnelExponent = { "FresnelExponent", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, FresnelExponent), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FresnelExponent_MetaData), NewProp_FresnelExponent_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_FresnelReflectFraction = { "FresnelReflectFraction", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, FresnelReflectFraction), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FresnelReflectFraction_MetaData), NewProp_FresnelReflectFraction_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_InterpPulseCurve = { "InterpPulseCurve", nullptr, (EPropertyFlags)0x0040000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, InterpPulseCurve), Z_Construct_UClass_UCurveVector_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InterpPulseCurve_MetaData), NewProp_InterpPulseCurve_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_IconBackground = { "IconBackground", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AItem, IconBackground), Z_Construct_UClass_UTexture2D_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IconBackground_MetaData), NewProp_IconBackground_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AItem_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_ItemMesh,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_CollisionBox,
@@ -812,6 +826,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AItem_Sta
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_FresnelExponent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_FresnelReflectFraction,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_InterpPulseCurve,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_IconBackground,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AItem_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AItem_Statics::DependentSingletons[])() = {
@@ -859,10 +874,10 @@ struct Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Pu
 		{ EItemType_StaticEnum, TEXT("EItemType"), &Z_Registration_Info_UEnum_EItemType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3108701253U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AItem, AItem::StaticClass, TEXT("AItem"), &Z_Registration_Info_UClass_AItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AItem), 1701853208U) },
+		{ Z_Construct_UClass_AItem, AItem::StaticClass, TEXT("AItem"), &Z_Registration_Info_UClass_AItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AItem), 29781883U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_1806977932(TEXT("/Script/ThirdPersonShooter"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_3368424605(TEXT("/Script/ThirdPersonShooter"),
 	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThirdPersonShooter_Source_ThirdPersonShooter_Public_Item_h_Statics::EnumInfo));

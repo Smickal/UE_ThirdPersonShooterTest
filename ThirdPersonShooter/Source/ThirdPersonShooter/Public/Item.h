@@ -234,6 +234,10 @@ private:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category  = "Item Properties", meta = (AllowPrivateAccess = "true"))
 	UCurveVector* InterpPulseCurve;
 
+	//BCKG for this item in the inventory
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Inventory, meta = (AllowPrivateAccess = "true"))
+	UTexture2D* IconBackground;
+
 public:
 	FORCEINLINE UWidgetComponent* GetPickUpWidget() const { return PickUpWidget;}
 	FORCEINLINE USphereComponent* GetAreaSphereComponent() const {return AreaSphere;}
